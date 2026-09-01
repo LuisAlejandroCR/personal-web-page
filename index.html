@@ -351,24 +351,73 @@ h1 em{font-style:italic;color:var(--accent)}
   padding-bottom:1rem;border-bottom:1px solid var(--ink);flex-wrap:wrap;
 }
 .sechead h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:1.6rem}
-.list{list-style:none}
-.list li{border-bottom:1px solid var(--rule)}
-.row{
-  display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) auto;
-  gap:.4rem clamp(1.5rem,4vw,3rem);padding:1.35rem 0;align-items:baseline;text-decoration:none;
+/* the builds ride a cylinder: a horizontal scroller whose cards turn on
+   their own vertical axis as they pass the centre */
+.arc{
+  list-style:none;display:flex;align-items:flex-start;
+  gap:clamp(.9rem,2.2vw,1.9rem);
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x proximity;
+  padding-block:clamp(2.2rem,5vh,3.4rem) clamp(.5rem,2vh,1.2rem);
+  /* break the 1080px measure and bleed to both screen edges */
+  margin-inline:calc(50% - 50vw);
+  padding-inline:calc(50vw - 50%);
+  scrollbar-width:none;-ms-overflow-style:none;
 }
-a.row:hover .rname{color:var(--accent)}
-a.row:hover .arrow{opacity:1;transform:translateX(2px)}
-.rname{font-family:"Instrument Serif",Georgia,serif;font-size:1.24rem;line-height:1.2}
-.rname small{
-  display:block;font-family:"Newsreader",serif;font-size:.72rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--dim);margin-top:.3rem;font-weight:500;
+.arc::-webkit-scrollbar{display:none}
+.arc > li{
+  flex:0 0 clamp(208px,22vw,286px);scroll-snap-align:center;
 }
-.rdesc{color:var(--dim);max-width:56ch;font-size:.98rem;line-height:1.5}
-.arrow{color:var(--accent);opacity:0;transition:opacity .15s,transform .15s;font-size:.9rem}
+.build{
+  display:block;text-decoration:none;color:inherit;will-change:transform;
+}
+.build .plate2{
+  aspect-ratio:4/5;border:1px solid var(--rule);background:var(--paper-2);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+  padding:clamp(1.1rem,1.8vw,1.6rem);
+}
+.build .plate2 img{width:100%;height:100%;object-fit:cover;object-position:top center}
+/* builds with no screen recording carry the rule they enforce instead */
+.build .claim{
+  display:flex;flex-direction:column;align-items:center;gap:1.15rem;
+  font-family:"Instrument Serif",Georgia,serif;
+  font-size:clamp(1.12rem,1.5vw,1.42rem);line-height:1.18;
+  text-align:center;text-wrap:balance;color:var(--ink);
+}
+.build .claim::before{
+  content:"";display:block;width:34px;height:1px;background:var(--accent);
+}
+.build .bname{
+  display:block;margin-top:1rem;
+  font-family:"Instrument Serif",Georgia,serif;font-size:1.16rem;line-height:1.2;
+}
+.build .bmeta{
+  display:block;margin-top:.4rem;font-size:.66rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dim);font-weight:500;
+}
+a.build:hover .bname{color:var(--accent)}
+a.build:hover .plate2{border-color:var(--accent)}
+.arc-hint{
+  display:flex;align-items:center;gap:.9rem;color:var(--dim);
+  margin-top:clamp(1rem,2.5vh,1.8rem);
+}
+.arc-hint .bar{display:block;width:56px;height:1px;background:var(--rule)}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .build{
+      animation:arcTurn linear both;
+      animation-timeline:view(inline);
+      animation-range:cover 0% cover 100%;
+    }
+    @keyframes arcTurn{
+      0%  {opacity:.5;transform:perspective(1500px) translate3d(0,-9px,-190px) rotateY(40deg)}
+      50% {opacity:1; transform:perspective(1500px) translate3d(0,11px,0) rotateY(0deg)}
+      100%{opacity:.5;transform:perspective(1500px) translate3d(0,-9px,-190px) rotateY(-40deg)}
+    }
+  }
+}
 @media (max-width:760px){
-  .row{grid-template-columns:minmax(0,1fr) auto}
-  .rdesc{grid-column:1/-1;margin-top:.5rem}
+  .arc > li{flex-basis:min(64vw,240px)}
 }
 
 /* ── contact ────────────────────────────── */
@@ -541,70 +590,56 @@ footer{
       <h2 data-en="Hackathon builds" data-es="Proyectos de hackatón">Hackathon builds</h2>
       <span class="meta" data-en="Shipped and documented" data-es="Entregados y documentados">Shipped and documented</span>
     </div>
-    <ul class="list">
-      <li><a class="row" href="https://cerrojo-app.vercel.app/" target="_blank" rel="noopener">
-        <span class="rname">Cerrojo<small>Aleph 2026 · WDK</small></span>
-        <span class="rdesc"
-          data-en="A payroll agent that cannot exceed the company’s spending rules — even when the spreadsheet tells it to."
-          data-es="Un agente de nómina que no puede exceder las reglas de gasto de la empresa — aunque la hoja de cálculo se lo pida."
-        >A payroll agent that cannot exceed the company’s spending rules — even when the spreadsheet tells it to.</span>
-        <span class="arrow">→</span>
+    <ul class="arc" tabindex="0" role="region"
+        aria-label="Hackathon builds, a horizontally scrollable gallery">
+
+      <li><a class="build" href="https://cerrojo-app.vercel.app/" target="_blank" rel="noopener">
+        <span class="plate2"><img src="assets/cerrojo-card.webp" alt="The Cerrojo landing page: AI can propose payments. It can't decide where your money goes." width="720" height="900" loading="lazy" decoding="async"></span>
+        <span class="bname">Cerrojo</span>
+        <span class="bmeta">Aleph 2026 &middot; WDK</span>
       </a></li>
 
-      <li><div class="row">
-        <span class="rname">Quick Analytical Agent<small>Claude Workshop · Bogotá</small></span>
-        <span class="rdesc"
-          data-en="Financial analyst agent with a typed abstention contract and a golden-set eval harness."
-          data-es="Agente analista financiero con contrato de abstención tipada y un harness de evaluación con golden set."
-        >Financial analyst agent with a typed abstention contract and a golden-set eval harness.</span>
-        <span class="arrow"></span>
+      <li><div class="build">
+        <span class="plate2"><span class="claim" data-en="Abstains when the data is thin" data-es="Se abstiene cuando faltan datos">Abstains when the data is thin</span></span>
+        <span class="bname">Quick Analytical Agent</span>
+        <span class="bmeta">Claude Workshop &middot; Bogot&aacute;</span>
       </div></li>
 
-      <li><div class="row">
-        <span class="rname">R5 Cuadre<small>Maratón Smart4AI</small></span>
-        <span class="rdesc"
-          data-en="Bank reconciliation for small businesses: a four-level deterministic matcher that must explain 100% of the differences."
-          data-es="Conciliación bancaria para pymes: un matcher determinista de cuatro niveles que debe explicar el 100% de las diferencias."
-        >Bank reconciliation for small businesses: a four-level deterministic matcher that must explain 100% of the differences.</span>
-        <span class="arrow"></span>
+      <li><div class="build">
+        <span class="plate2"><span class="claim" data-en="Explains 100% of the differences" data-es="Explica el 100% de las diferencias">Explains 100% of the differences</span></span>
+        <span class="bname">R5 Cuadre</span>
+        <span class="bmeta">Marat&oacute;n Smart4AI</span>
       </div></li>
 
-      <li><div class="row">
-        <span class="rname">Cockpit INVIMA<small>Genera Summit 2026</small></span>
-        <span class="rdesc"
-          data-en="Finds where two modules of a drug dossier contradict each other, and quotes the exact folio where it happens."
-          data-es="Encuentra dónde dos módulos de un expediente de medicamento se contradicen, y cita el folio exacto donde ocurre."
-        >Finds where two modules of a drug dossier contradict each other, and quotes the exact folio where it happens.</span>
-        <span class="arrow"></span>
+      <li><div class="build">
+        <span class="plate2"><span class="claim" data-en="Quotes the exact folio" data-es="Cita el folio exacto">Quotes the exact folio</span></span>
+        <span class="bname">Cockpit INVIMA</span>
+        <span class="bmeta">Genera Summit 2026</span>
       </div></li>
 
-      <li><a class="row" href="https://github.com/realtime-hackaton-2026/incloudy" target="_blank" rel="noopener">
-        <span class="rname">incloudy<small>Realtime Hackathon 2026</small></span>
-        <span class="rdesc"
-          data-en="Realtime platform for teachers and specialists following special-education cases together."
-          data-es="Plataforma en tiempo real para que docentes y especialistas acompañen casos de educación especial en conjunto."
-        >Realtime platform for teachers and specialists following special-education cases together.</span>
-        <span class="arrow">→</span>
+      <li><a class="build" href="https://github.com/realtime-hackaton-2026/incloudy" target="_blank" rel="noopener">
+        <span class="plate2"><span class="claim" data-en="One case, many specialists" data-es="Un caso, muchos especialistas">One case, many specialists</span></span>
+        <span class="bname">incloudy</span>
+        <span class="bmeta">Realtime Hackathon 2026</span>
       </a></li>
 
-      <li><div class="row">
-        <span class="rname">Panini Exchange<small>Open source · 2026</small></span>
-        <span class="rdesc"
-          data-en="Sticker inventory and bundle negotiation for World Cup collectors. No account, no cloud."
-          data-es="Inventario de láminas y negociación de paquetes para coleccionistas del Mundial. Sin cuenta, sin nube."
-        >Sticker inventory and bundle negotiation for World Cup collectors. No account, no cloud.</span>
-        <span class="arrow"></span>
+      <li><div class="build">
+        <span class="plate2"><span class="claim" data-en="No account, no cloud" data-es="Sin cuenta, sin nube">No account, no cloud</span></span>
+        <span class="bname">Panini Exchange</span>
+        <span class="bmeta" data-en="Open source &middot; 2026" data-es="C&oacute;digo abierto &middot; 2026">Open source &middot; 2026</span>
       </div></li>
 
-      <li><div class="row">
-        <span class="rname">Somos CRO Lab<small>Conversion lab</small></span>
-        <span class="rdesc"
-          data-en="A/B experiments on a synthetic funnel with Wilson intervals and an ICE-ranked backlog. Every number is synthetic, by design."
-          data-es="Experimentos A/B sobre un embudo sintético con intervalos de Wilson y un backlog priorizado por ICE. Todos los datos son sintéticos, a propósito."
-        >A/B experiments on a synthetic funnel with Wilson intervals and an ICE-ranked backlog. Every number is synthetic, by design.</span>
-        <span class="arrow"></span>
+      <li><div class="build">
+        <span class="plate2"><span class="claim" data-en="Every number is synthetic" data-es="Todos los datos son sint&eacute;ticos">Every number is synthetic</span></span>
+        <span class="bname">Somos CRO Lab</span>
+        <span class="bmeta" data-en="Conversion lab" data-es="Laboratorio de conversi&oacute;n">Conversion lab</span>
       </div></li>
+
     </ul>
+    <div class="arc-hint">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="meta" data-en="Drag sideways" data-es="Arrastra de lado">Drag sideways</span>
+    </div>
   </div>
 </section>
 
@@ -641,6 +676,19 @@ footer{
     : ((navigator.language || 'en').slice(0,2).toLowerCase() === 'es' ? 'es' : 'en');
   apply(initial);
   buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
+})();
+
+/* the arc rests at its centre, so builds bleed off both edges and the
+   barrel reads as a barrel before anyone touches it */
+(function(){
+  var arc = document.querySelector('.arc');
+  if (!arc) return;
+  function centre(){
+    var max = arc.scrollWidth - arc.clientWidth;
+    if (max > 0) arc.scrollLeft = Math.round(max / 2);
+  }
+  centre();
+  addEventListener('load', centre);
 })();
 
 /* the recording plays only while its panel is on screen, and never if the
