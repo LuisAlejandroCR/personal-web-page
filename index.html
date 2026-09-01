@@ -351,13 +351,69 @@ h1 em{font-style:italic;color:var(--accent)}
   padding-bottom:1rem;border-bottom:1px solid var(--ink);flex-wrap:wrap;
 }
 .sechead h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:1.6rem}
+/* ── the conversations: what the agent said, and why ── */
+.story{padding-top:clamp(4rem,10vh,7rem)}
+.beat{margin-top:clamp(2.6rem,7vh,4.4rem)}
+.beat .ctr{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
+.beat .ctr b,.beat .ctr span{
+  font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+}
+.beat .ctr b{color:var(--accent)}
+.beat .ctr span{color:var(--dim)}
+.script{border:1px solid var(--rule);background:var(--paper-2);max-width:640px}
+.script .flags{
+  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
+  padding:1rem clamp(1.1rem,2vw,1.6rem);border-bottom:1px solid var(--rule);
+}
+.flag{
+  border:1px solid var(--rule);padding:.4rem .75rem;
+  font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);font-weight:500;
+}
+.flag b{font-weight:500;color:var(--ink)}
+.flag.res{border-color:var(--accent)}
+.flag.res b{color:var(--accent)}
+.flags .to{color:var(--rule)}
+.turns{padding:.4rem clamp(1.1rem,2vw,1.6rem) 1.2rem}
+.turn{display:grid;grid-template-columns:4.4rem minmax(0,1fr);gap:0 1.1rem;padding:.9rem 0}
+.turn + .turn{border-top:1px solid var(--rule)}
+.turn .who{
+  font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);
+  font-weight:500;padding-top:.35rem;
+}
+.turn .said{border-left:1px solid var(--rule);padding-left:1.1rem;font-size:1rem;line-height:1.5}
+.turn.agent .said{border-left-color:var(--accent)}
+.turn i{font-style:normal;color:var(--accent);font-size:.82rem}
+.script .close{
+  padding:1rem clamp(1.1rem,2vw,1.6rem);border-top:1px solid var(--ink);
+  font-family:"Instrument Serif",Georgia,serif;font-size:1.28rem;line-height:1.25;
+}
+@media (max-width:520px){
+  .turn{grid-template-columns:minmax(0,1fr);gap:.45rem}
+  .turn .said{border-left:0;padding-left:0}
+  .turn.agent .said{border-left:0}
+}
+/* the transcript writes itself out as it enters, and rewinds on the way back */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .script{view-timeline-name:--sc;view-timeline-axis:block}
+    .script .flag,.script .turn,.script .close{animation:sayIn linear both;animation-timeline:--sc}
+    .script .flag:nth-child(1){animation-range:entry 15% entry 38%}
+    .script .flag:nth-child(3){animation-range:entry 21% entry 44%}
+    .turn:nth-child(1){animation-range:entry 28% entry 50%}
+    .turn:nth-child(2){animation-range:entry 36% entry 58%}
+    .turn:nth-child(3){animation-range:entry 44% entry 66%}
+    .turn:nth-child(4){animation-range:entry 52% entry 74%}
+    .script .close{animation-range:entry 60% entry 82%}
+    @keyframes sayIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+}
+
 /* the builds ride a cylinder: a horizontal scroller whose cards turn on
    their own vertical axis as they pass the centre */
 .arc{
   list-style:none;display:flex;align-items:flex-start;
   gap:clamp(.9rem,2.2vw,1.9rem);
   overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x proximity;
   padding-block:clamp(2.2rem,5vh,3.4rem) clamp(.5rem,2vh,1.2rem);
   /* break the 1080px measure and bleed to both screen edges */
   margin-inline:calc(50% - 50vw);
@@ -366,7 +422,11 @@ h1 em{font-style:italic;color:var(--accent)}
 }
 .arc::-webkit-scrollbar{display:none}
 .arc > li{
-  flex:0 0 clamp(208px,22vw,286px);scroll-snap-align:center;
+  flex:0 0 clamp(208px,22vw,286px);
+}
+@media (prefers-reduced-motion: reduce){
+  .arc{scroll-snap-type:x proximity}
+  .arc > li{scroll-snap-align:center}
 }
 .build{
   display:block;text-decoration:none;color:inherit;will-change:transform;
@@ -584,6 +644,103 @@ footer{
 
 </div>
 
+
+<section class="story sec pad">
+  <div class="wrap">
+    <div class="sechead">
+      <h2 data-en="The conversations" data-es="Las conversaciones">The conversations</h2>
+      <span class="meta" data-en="Detected, then answered" data-es="Detectado, luego respondido">Detected, then answered</span>
+    </div>
+      <div class="beat">
+        <div class="ctr"><b>Beat 01</b><span>Choco</span></div>
+        <div class="script">
+          <div class="flags">
+            <span class="flag" data-en="Detected: <b>Missing details</b>" data-es="Detectado: <b>Faltan datos</b>">Detected: <b>Missing details</b></span>
+            <span class="to" aria-hidden="true">&rarr;</span>
+            <span class="flag res" data-en="Response: <b>Hold</b>" data-es="Respuesta: <b>Retiene</b>">Response: <b>Hold</b></span>
+          </div>
+          <div class="turns">
+          <div class="turn ">
+            <span class="who" data-en="User" data-es="Usuario">User</span>
+            <span class="said" data-en="Send mom 50 KESm." data-es="M&aacute;ndale 50 KESm a mam&aacute;.">Send mom 50 KESm.</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[checking]</i> Missing: recipient, amount, currency, timing. <i>[refusing]</i> Confidence 0%. Nothing sent." data-es="<i>[verificando]</i> Faltan: destinatario, monto, moneda, momento. <i>[rechazando]</i> Confianza 0%. No se envi&oacute; nada."><i>[checking]</i> Missing: recipient, amount, currency, timing. <i>[refusing]</i> Confidence 0%. Nothing sent.</span>
+          </div>
+          <div class="turn ">
+            <span class="who" data-en="User" data-es="Usuario">User</span>
+            <span class="said" data-en="4,200 shillings to Amina, now." data-es="4.200 chelines a Amina, ahora.">4,200 shillings to Amina, now.</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[signing]</i> The wallet signs, not me. USDC &rarr; KES, receipted on-chain." data-es="<i>[firmando]</i> Firma la billetera, no yo. USDC &rarr; KES, con recibo en cadena."><i>[signing]</i> The wallet signs, not me. USDC &rarr; KES, receipted on-chain.</span>
+          </div>
+          </div>
+          <div class="close" data-en="Choco never holds a private key." data-es="Choco nunca custodia una llave privada.">Choco never holds a private key.</div>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="ctr"><b>Beat 02</b><span>Creva</span></div>
+        <div class="script">
+          <div class="flags">
+            <span class="flag" data-en="Detected: <b>Unverified signal</b>" data-es="Detectado: <b>Se&ntilde;al sin verificar</b>">Detected: <b>Unverified signal</b></span>
+            <span class="to" aria-hidden="true">&rarr;</span>
+            <span class="flag res" data-en="Response: <b>Abstain</b>" data-es="Respuesta: <b>Se abstiene</b>">Response: <b>Abstain</b></span>
+          </div>
+          <div class="turns">
+          <div class="turn ">
+            <span class="who" data-en="User" data-es="Usuario">User</span>
+            <span class="said" data-en="What is my score?" data-es="&iquest;Cu&aacute;l es mi score?">What is my score?</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[tracing]</i> Every signal carries its source and its date." data-es="<i>[trazando]</i> Cada se&ntilde;al lleva su fuente y su fecha."><i>[tracing]</i> Every signal carries its source and its date.</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[abstaining]</i> Two are unverified. I do not estimate those." data-es="<i>[absteni&eacute;ndose]</i> Dos no est&aacute;n verificadas. Esas no las estimo."><i>[abstaining]</i> Two are unverified. I do not estimate those.</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[sealing]</i> A report anyone can check without an account." data-es="<i>[sellando]</i> Un reporte que cualquiera puede verificar sin cuenta."><i>[sealing]</i> A report anyone can check without an account.</span>
+          </div>
+          </div>
+          <div class="close" data-en="A score that publishes what it does not estimate." data-es="Un score que publica lo que no estima.">A score that publishes what it does not estimate.</div>
+        </div>
+      </div>
+      <div class="beat">
+        <div class="ctr"><b>Beat 03</b><span>Asegura</span></div>
+        <div class="script">
+          <div class="flags">
+            <span class="flag" data-en="Detected: <b>Uncertainty</b>" data-es="Detectado: <b>Incertidumbre</b>">Detected: <b>Uncertainty</b></span>
+            <span class="to" aria-hidden="true">&rarr;</span>
+            <span class="flag res" data-en="Response: <b>Escalate</b>" data-es="Respuesta: <b>Escala</b>">Response: <b>Escalate</b></span>
+          </div>
+          <div class="turns">
+          <div class="turn ">
+            <span class="who" data-en="User" data-es="Usuario">User</span>
+            <span class="said" data-en="No s&eacute; qu&eacute; seguro necesito." data-es="No s&eacute; qu&eacute; seguro necesito.">No s&eacute; qu&eacute; seguro necesito.</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[asking]</i> &iquest;Qui&eacute;n depende de ti?" data-es="<i>[preguntando]</i> &iquest;Qui&eacute;n depende de ti?"><i>[asking]</i> &iquest;Qui&eacute;n depende de ti?</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[recommending]</i> Colsubsidio Vida &mdash; por esta raz&oacute;n exacta." data-es="<i>[recomendando]</i> Colsubsidio Vida &mdash; por esta raz&oacute;n exacta."><i>[recommending]</i> Colsubsidio Vida &mdash; por esta raz&oacute;n exacta.</span>
+          </div>
+          <div class="turn agent">
+            <span class="who" data-en="Agent" data-es="Agente">Agent</span>
+            <span class="said" data-en="<i>[escalating]</i> Dejo de entenderte. Te paso con un asesor humano." data-es="<i>[escalando]</i> Dejo de entenderte. Te paso con un asesor humano."><i>[escalating]</i> Dejo de entenderte. Te paso con un asesor humano.</span>
+          </div>
+          </div>
+          <div class="close" data-en="No policy activates until Wompi confirms the payment." data-es="Ninguna p&oacute;liza se activa hasta que Wompi confirma el pago.">No policy activates until Wompi confirms the payment.</div>
+        </div>
+      </div>
+  </div>
+</section>
+
 <section class="sec pad">
   <div class="wrap">
     <div class="sechead">
@@ -660,6 +817,69 @@ footer{
 </section>
 
 <script>
+/* the arc drifts on its own, so the barrel is always turning when you
+   look at it. It yields the moment you touch it, and holds still for
+   anyone who has asked for less motion. */
+(function(){
+  var arc = document.querySelector('.arc');
+  if (!arc) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var items  = [].slice.call(arc.children);
+  var n = items.length;
+  if (!n) return;
+
+  if (reduce.matches) {                       /* no drift: just rest centred */
+    var max = arc.scrollWidth - arc.clientWidth;
+    if (max > 0) arc.scrollLeft = Math.round(max / 2);
+    return;
+  }
+
+  /* a second pass of the same builds gives the loop somewhere to wrap to */
+  items.forEach(function(li){
+    var copy = li.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    [].forEach.call(copy.querySelectorAll('a'), function(a){ a.tabIndex = -1; });
+    arc.appendChild(copy);
+  });
+
+  var seam = arc.children[n].offsetLeft - arc.children[0].offsetLeft;
+  if (seam <= 0) return;
+
+  var pos = seam / 2;                         /* start mid-strip, cards both sides */
+  arc.scrollLeft = pos;
+
+  var SPEED = 24;                             /* px per second — a drift, not a carousel */
+  var held = 0, onScreen = true, last = 0;
+
+  function hold(ms){ held = Math.max(held, performance.now() + ms); }
+
+  arc.addEventListener('pointerenter', function(){ hold(1e9); });
+  arc.addEventListener('pointerleave', function(){ held = 0; });
+  arc.addEventListener('focusin',      function(){ hold(1e9); });
+  arc.addEventListener('focusout',     function(){ held = 0; });
+  arc.addEventListener('pointerdown',  function(){ hold(1e9); });
+  arc.addEventListener('scroll', function(){       /* a manual scroll wins */
+    if (Math.abs(arc.scrollLeft - pos) > 2) { pos = arc.scrollLeft; hold(1600); }
+  }, {passive:true});
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(e){ onScreen = e[0].isIntersecting; })
+      .observe(arc);
+  }
+
+  function frame(t){
+    var dt = last ? Math.min(64, t - last) : 0;
+    last = t;
+    if (onScreen && !document.hidden && t > held && !reduce.matches) {
+      pos += SPEED * dt / 1000;
+      while (pos >= seam) pos -= seam;
+      arc.scrollLeft = pos;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
 (function(){
   var nodes = document.querySelectorAll('[data-en][data-es]');
   var buttons = document.querySelectorAll('.lang button');
@@ -676,19 +896,6 @@ footer{
     : ((navigator.language || 'en').slice(0,2).toLowerCase() === 'es' ? 'es' : 'en');
   apply(initial);
   buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
-})();
-
-/* the arc rests at its centre, so builds bleed off both edges and the
-   barrel reads as a barrel before anyone touches it */
-(function(){
-  var arc = document.querySelector('.arc');
-  if (!arc) return;
-  function centre(){
-    var max = arc.scrollWidth - arc.clientWidth;
-    if (max > 0) arc.scrollLeft = Math.round(max / 2);
-  }
-  centre();
-  addEventListener('load', centre);
 })();
 
 /* the recording plays only while its panel is on screen, and never if the
