@@ -849,7 +849,7 @@ footer{
   arc.scrollLeft = pos;
 
   var SPEED = 24;                             /* px per second — a drift, not a carousel */
-  var held = 0, onScreen = true, last = 0;
+  var held = 0, last = 0, id = 0;
 
   function hold(ms){ held = Math.max(held, performance.now() + ms); }
 
@@ -862,22 +862,32 @@ footer{
     if (Math.abs(arc.scrollLeft - pos) > 2) { pos = arc.scrollLeft; hold(1600); }
   }, {passive:true});
 
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function(e){ onScreen = e[0].isIntersecting; })
-      .observe(arc);
-  }
-
   function frame(t){
     var dt = last ? Math.min(64, t - last) : 0;
     last = t;
-    if (onScreen && !document.hidden && t > held && !reduce.matches) {
+    if (t > held && !reduce.matches) {
       pos += SPEED * dt / 1000;
       while (pos >= seam) pos -= seam;
       arc.scrollLeft = pos;
     }
-    requestAnimationFrame(frame);
+    id = requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+
+  /* the loop only exists while the arc is actually on screen — no frames
+     are burned scrolling something nobody is looking at */
+  function run(on){
+    if (on && !id && !document.hidden) { last = 0; id = requestAnimationFrame(frame); }
+    else if (!on && id) { cancelAnimationFrame(id); id = 0; }
+  }
+
+  var seen = false;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(e){ seen = e[0].isIntersecting; run(seen); })
+      .observe(arc);
+  } else {
+    seen = true; run(true);
+  }
+  document.addEventListener('visibilitychange', function(){ run(seen && !document.hidden); });
 })();
 
 (function(){
