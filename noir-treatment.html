@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Noir Treatment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Orbitron:wght@500;700&family=Chakra+Petch:wght@500;700&family=Montserrat:wght@300;400;500;600;800&display=swap">
+<style>
+:root{
+  --void:#000000;
+  --raise:#1b1b1b;
+  --rule:#2f2e2a;
+  --paper:#ffffff;
+  --dim:#9a998e;
+  --butter:#fff9aa;
+  --display:"Michroma","Arial Narrow",Arial,sans-serif;
+  --body:"Montserrat","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--void);color:var(--paper);
+  font:300 clamp(.95rem,.3vw + .88rem,1.04rem)/1.65 var(--body);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--butter)}
+::selection{background:var(--butter);color:var(--void)}
+.wrap{max-width:960px;margin:0 auto;padding:0 6vw}
+.lab{
+  font:500 .64rem/1.5 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
+}
+.rulehair{height:1px;background:var(--rule);border:0}
+
+/* masthead */
+.mast{padding:clamp(3rem,9vh,5.5rem) 0 clamp(2rem,5vh,3rem)}
+.mast .kicker{display:flex;gap:.9rem;align-items:center;flex-wrap:wrap}
+.mast .kicker i{display:block;width:44px;height:1px;background:var(--butter);font-style:normal}
+.mast h1{
+  margin-top:1.6rem;font:400 clamp(1.6rem,4.4vw,2.9rem)/1.14 var(--display);
+  letter-spacing:-.01em;text-wrap:balance;
+}
+.mast h1 span{color:var(--butter)}
+.mast p{margin-top:1.5rem;max-width:58ch;color:var(--dim)}
+
+/* verdict rows */
+.verdicts{display:grid;gap:0;margin-top:clamp(2.5rem,6vh,3.5rem);border-top:1px solid var(--rule)}
+.row{
+  display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr) auto;
+  gap:.6rem 2rem;align-items:baseline;
+  padding:1.5rem 0;border-bottom:1px solid var(--rule);
+}
+.row h3{font:600 .95rem/1.4 var(--body);letter-spacing:.01em}
+.row h3 small{display:block;margin-top:.3rem;font:400 .72rem/1.4 var(--body);color:var(--dim);letter-spacing:0}
+.row p{color:var(--dim);max-width:52ch;font-size:.92rem}
+.row p b{color:var(--paper);font-weight:500}
+.chip{
+  justify-self:end;white-space:nowrap;
+  font:500 .62rem/1 var(--body);letter-spacing:.18em;text-transform:uppercase;
+  padding:.5rem .7rem;border:1px solid currentColor;
+}
+.chip.go{color:var(--butter)}
+.chip.no{color:#ff8f6b}
+@media (max-width:680px){
+  .row{grid-template-columns:minmax(0,1fr);}
+  .chip{justify-self:start}
+}
+
+/* section shell */
+section{padding:clamp(3rem,8vh,4.5rem) 0}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.sechead h2{font:400 clamp(1.05rem,2.2vw,1.35rem)/1.2 var(--display)}
+
+/* face specimens */
+.faces{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.face{background:var(--void);padding:1.6rem clamp(1rem,3vw,1.8rem);display:grid;gap:.9rem}
+.face .top{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap}
+.face .name{font:500 .68rem/1 var(--body);letter-spacing:.2em;text-transform:uppercase}
+.face .lic{font:400 .66rem/1 var(--body);letter-spacing:.1em;color:var(--dim)}
+.face .sample{
+  font-size:clamp(1.05rem,3.4vw,1.75rem);line-height:1.16;color:var(--paper);
+  overflow-x:auto;white-space:nowrap;padding-bottom:.2rem;
+}
+.face .verdict{font-size:.84rem;color:var(--dim)}
+.f-mich .sample{font-family:var(--display)}
+.f-orb  .sample{font-family:"Orbitron",var(--display);font-weight:500}
+.f-chak .sample{font-family:"Chakra Petch",var(--body);font-weight:600}
+.f-mont .sample{font-family:var(--body);font-weight:800;letter-spacing:.16em;font-size:clamp(.95rem,2.9vw,1.45rem)}
+.face.pick{background:var(--raise)}
+.face.pick .name{color:var(--butter)}
+
+/* the re-skinned site */
+.demo{border:1px solid var(--rule);background:var(--void)}
+.demo .bar{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:.8rem 1.2rem;border-bottom:1px solid var(--rule);
+}
+.demo .bar .sig{font:400 .8rem/1 var(--display);letter-spacing:.02em}
+.demo .bar .lang{font:500 .62rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.demo .bar .lang b{color:var(--paper);font-weight:500;border-bottom:1px solid var(--butter);padding-bottom:.25rem}
+.demo .stage{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);
+  gap:clamp(1.8rem,4vw,3.2rem);align-items:center;
+  padding:clamp(2rem,5vw,3.2rem) clamp(1.2rem,3.5vw,2.4rem);
+}
+.demo h3{
+  font:400 clamp(1.4rem,3.6vw,2.35rem)/1.12 var(--display);
+  letter-spacing:-.015em;max-width:15ch;text-wrap:balance;
+}
+.demo h3 em{font-style:normal;color:var(--butter)}
+.demo .lede{margin-top:1.4rem;max-width:44ch;color:var(--dim);font-size:.95rem}
+.demo .cue{margin-top:2rem;display:flex;align-items:center;gap:.9rem;color:var(--dim)}
+.demo .cue i{display:block;width:56px;height:1px;background:var(--butter);font-style:normal}
+
+/* the refusal slip, in butter */
+.slip{background:var(--raise);border:1px solid var(--rule);padding:1.4rem}
+.slip .head{display:flex;justify-content:space-between;gap:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--paper)}
+.slip dl{margin:0}
+.slip .line{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:.3rem 1.2rem;align-items:baseline;
+  padding:.8rem 0;border-bottom:1px solid var(--rule);
+}
+.slip .line dt{font:500 .6rem/1.4 var(--body);letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+.slip .line dd{margin:0;text-align:right;font-size:.88rem;font-variant-numeric:tabular-nums}
+.slip .line dd.void{color:var(--butter)}
+.slip .verdict{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;padding-top:1.2rem}
+.slip .verdict strong{
+  display:block;font:400 clamp(1.7rem,4vw,2.3rem)/.94 var(--display);color:var(--butter);letter-spacing:-.01em;
+}
+.slip .verdict .lab{display:block;margin-top:.7rem}
+.slip .stamp{flex:none;width:82px;height:auto;margin:0 -1.5rem -.4rem 0;color:var(--butter);opacity:.85;transform:rotate(-9deg)}
+.notes{list-style:none;margin-top:1.5rem;display:grid;gap:.7rem}
+.notes li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:.8rem;align-items:center}
+.notes i{display:block;height:1px;background:var(--rule)}
+@media (max-width:760px){ .demo .stage{grid-template-columns:minmax(0,1fr)} }
+
+/* contrast facts */
+.facts{width:100%;border-collapse:collapse;font-size:.88rem}
+.facts th,.facts td{text-align:left;padding:.85rem .8rem;border-bottom:1px solid var(--rule);vertical-align:middle}
+.facts th{font:500 .6rem/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.facts td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.swatch{display:inline-flex;align-items:center;justify-content:center;width:5.4rem;height:2rem;font:500 .7rem/1 var(--body);border:1px solid var(--rule)}
+.facts .ok{color:var(--butter)}
+.facts .bad{color:#ff8f6b}
+.tablewrap{overflow-x:auto}
+
+/* palette strip */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.sw{padding:1rem;display:grid;gap:.55rem;min-height:8.5rem;align-content:end}
+.sw .hex{font:500 .68rem/1 var(--body);letter-spacing:.12em}
+.sw .use{font:400 .68rem/1.4 var(--body)}
+.sw-void{background:#000;color:#fff}
+.sw-void .use{color:var(--dim)}
+.sw-raise{background:#1b1b1b;color:#fff}
+.sw-raise .use{color:var(--dim)}
+.sw-paper{background:#fff;color:#000}
+.sw-paper .use{color:#55544c}
+.sw-butter{background:#fff9aa;color:#000}
+.sw-butter .use{color:#55544c}
+
+footer{padding:clamp(2.5rem,7vh,4rem) 0 clamp(3.5rem,9vh,5rem);color:var(--dim);font-size:.88rem}
+footer p{max-width:56ch}
+footer .lab{margin-bottom:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="kicker"><i></i><span class="lab">Direction study · luisalejandrocr.com</span></div>
+    <h1>The site, in <span>black and butter</span>.</h1>
+    <p>The OPAC boards, taken apart into what is actually reusable and what is not, then applied to the page you already have. The refusal slip below is the real Cerrojo exhibit from your hero — same copy, same structure, wearing the new palette.</p>
+  </header>
+
+  <div class="verdicts">
+    <div class="row">
+      <h3>Palette<small>#000 · #1b1b1b · #fff · #fff9aa</small></h3>
+      <p>Colour values carry no rights and this pairing is common. The one hard constraint: <b>butter on white is 1.08:1</b> — it can never be text on a light ground, only a fill behind black type.</p>
+      <span class="chip go">Take it</span>
+    </div>
+    <div class="row">
+      <h3>Montserrat<small>Body &amp; captions</small></h3>
+      <p>Open Font License, served by Google Fonts, free for commercial work. It replaces Newsreader cleanly and already covers the Spanish diacritics the page switches into.</p>
+      <span class="chip go">Take it</span>
+    </div>
+    <div class="row">
+      <h3>Azonix<small>Display</small></h3>
+      <p>Free for <b>personal use only</b>; commercial use needs a licence from the author, and self-hosting the file on a page that advertises freelance work is the wrong side of that line. Caps-only, no lowercase — it could never set more than a signature anyway.</p>
+      <span class="chip no">Leave it</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sechead">
+      <h2>Four ways to say the name</h2>
+      <span class="lab">Display candidates · all OFL</span>
+    </div>
+    <div class="faces">
+      <div class="face f-mich pick">
+        <div class="top"><span class="name">Michroma — recommended</span><span class="lic">Google Fonts · OFL</span></div>
+        <div class="sample">LUIS ALEJANDRO CÁRDENAS</div>
+        <p class="verdict">Widest of the four and the closest read to Azonix. Has real lowercase, so it can carry headlines as well as the signature.</p>
+      </div>
+      <div class="face f-orb">
+        <div class="top"><span class="name">Orbitron</span><span class="lic">Google Fonts · OFL</span></div>
+        <div class="sample">LUIS ALEJANDRO CÁRDENAS</div>
+        <p class="verdict">More overtly technical. Leans sci-fi fast — probably louder than a fintech portfolio wants.</p>
+      </div>
+      <div class="face f-chak">
+        <div class="top"><span class="name">Chakra Petch</span><span class="lic">Google Fonts · OFL</span></div>
+        <div class="sample">LUIS ALEJANDRO CÁRDENAS</div>
+        <p class="verdict">Squarer, tighter, more workmanlike. Sets long headlines better than the other two.</p>
+      </div>
+      <div class="face f-mont">
+        <div class="top"><span class="name">Montserrat 800, tracked</span><span class="lic">Already loaded · zero cost</span></div>
+        <div class="sample">LUIS ALEJANDRO CÁRDENAS</div>
+        <p class="verdict">One family for the whole site, no second request. Gets most of the width without the geometric edge.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>Your hero, re-skinned</h2>
+      <span class="lab">Michroma + Montserrat · at rest</span>
+    </div>
+    <div class="demo">
+      <div class="bar">
+        <span class="sig">Luis Alejandro Cárdenas</span>
+        <span class="lang"><b>English</b> &nbsp;/&nbsp; Español</span>
+      </div>
+      <div class="stage">
+        <div>
+          <h3>I build financial products where the software is allowed to say <em>no</em>.</h3>
+          <p class="lede">Agents, payment rails and underwriting for Latin America — built so the refusal is a feature of the record, not an error state.</p>
+          <div class="cue"><i></i><span class="lab">One refusal, held on the page</span></div>
+        </div>
+        <figure class="slip">
+          <div class="head"><span class="lab">Cerrojo · Payroll</span><span class="lab">04:12:07</span></div>
+          <dl>
+            <div class="line"><dt>Instruction</dt><dd>Pay the November payroll</dd></div>
+            <div class="line"><dt>Rule 07</dt><dd>Cap 2,000,000 per person</dd></div>
+            <div class="line"><dt>Signature</dt><dd class="void">Not present</dd></div>
+          </dl>
+          <div class="verdict">
+            <div><strong>Held</strong><span class="lab">No money moved</span></div>
+            <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+              <circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="60" cy="60" r="49" fill="none" stroke="currentColor" stroke-width="1"/>
+              <text x="60" y="72" text-anchor="middle" fill="currentColor" font-family="Michroma, sans-serif" font-size="30" letter-spacing="2">NO</text>
+              <path d="M26 90 H94" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </div>
+          <ul class="notes">
+            <li><i aria-hidden="true"></i><span class="lab">The limit is declared, not inferred</span></li>
+            <li><i aria-hidden="true"></i><span class="lab">The system stopped itself</span></li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sechead">
+      <h2>Where each value is allowed to go</h2>
+      <span class="lab">Four tokens, no more</span>
+    </div>
+    <div class="swatches">
+      <div class="sw sw-void"><span class="hex">#000000</span><span class="use">Page ground. Every panel except the alternating ones.</span></div>
+      <div class="sw sw-raise"><span class="hex">#1B1B1B</span><span class="use">Raised surfaces — the slip, alternating panels.</span></div>
+      <div class="sw sw-paper"><span class="hex">#FFFFFF</span><span class="use">Body text on dark. Ground for the print/CV view.</span></div>
+      <div class="sw sw-butter"><span class="hex">#FFF9AA</span><span class="use">Accent on dark only. Never text on white — fill behind black type instead.</span></div>
+    </div>
+    <div class="tablewrap">
+      <table class="facts">
+        <thead><tr><th>Pairing</th><th>Sample</th><th>Ratio</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Butter on void</td><td><span class="swatch" style="background:#000;color:#fff9aa">Held</span></td><td class="num">19.4 : 1</td><td class="ok">Passes everything</td></tr>
+          <tr><td>Butter on raised</td><td><span class="swatch" style="background:#1b1b1b;color:#fff9aa">Held</span></td><td class="num">15.9 : 1</td><td class="ok">Passes everything</td></tr>
+          <tr><td>White on void</td><td><span class="swatch" style="background:#000;color:#fff">Held</span></td><td class="num">21 : 1</td><td class="ok">Passes everything</td></tr>
+          <tr><td>Dim grey on void</td><td><span class="swatch" style="background:#000;color:#9a998e">Held</span></td><td class="num">7.3 : 1</td><td class="ok">Body copy safe</td></tr>
+          <tr><td>Butter on white</td><td><span class="swatch" style="background:#fff;color:#fff9aa">Held</span></td><td class="num">1.08 : 1</td><td class="bad">Never as text</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="rulehair">
+
+  <footer>
+    <p class="lab">What this costs you</p>
+    <p>The switch is four CSS custom properties and two font-family stacks — the structure, the scroll timelines and the language toggle are untouched. What it actually costs is the warm, literary register the page has now: this direction reads engineered rather than written. That is the real decision, not the hex values.</p>
+  </footer>
+
+</div>
+</body>
+</html>
