@@ -1,2 +1,9 @@
 Thumbs.db
 .DS_Store
+
+# Exploracion previa: variantes no publicadas, capturas y CV. Repo publico - no se sube.
+_exploration/
+
+# Aprendizajes crudos: pueden nombrar cliente y cifras. Nunca a un repo publico.
+LEARNINGS.md
+
