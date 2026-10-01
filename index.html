@@ -1,11 +1,21 @@
 <!doctype html>
+<!-- index.html: single-page portfolio for Luis Cárdenas, served by GitHub Pages.
+     Hero product reel, principle strip, pinned scroll films per project, build principles,
+     hackathon archive and contact. EN/ES and warm/dark themes; no build step, no tracking. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#d8d8a6">
-<title>Luis Alejandro Cárdenas — AI &amp; Fintech</title>
-<meta name="description" content="AI agents and financial products for Latin America, built with explicit limits, human judgment and verifiable outcomes.">
+<title>Luis Cárdenas — AI &amp; Fintech</title>
+<meta name="description" content="AI agents, privacy and financial products for Latin America, built with explicit limits, human judgment and verifiable outcomes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Luis Cárdenas — Systems that know when to stop">
+<meta property="og:description" content="Prufture, Knowni, Choco, Creva and Asegura: products built around one hard limit each.">
+<meta property="og:url" content="https://luisalejandrocr.github.io/personal-web-page/">
+<meta property="og:image" content="https://luisalejandrocr.github.io/personal-web-page/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23245c32'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23d8d8a6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
@@ -25,12 +35,13 @@
   --veil-c:rgba(210,211,159,.84);
   --bar-fade:rgba(216,216,166,.84);
   --archive:#cfd19b;
-  --contact:#bfc68a;
   --shadow:rgba(31,45,30,.22);
-  --scene-brightness:.72;
-  --screen-green:#9ee6a4;
   --grain-opacity:.12;
   --grain-blend:multiply;
+  --film-bg:#0b150e;
+  --film-ink:#eef4e8;
+  --film-mist:#aebaa9;
+  --film-accent:#9ee6a4;
   --serif:"Instrument Serif",Georgia,serif;
   --mono:"DM Mono",Consolas,monospace;
 }
@@ -49,11 +60,10 @@ html[data-theme="dark"]{
   --veil-c:rgba(6,17,11,.88);
   --bar-fade:rgba(6,17,11,.8);
   --archive:#09150d;
-  --contact:#0d2114;
   --shadow:rgba(0,0,0,.48);
-  --scene-brightness:.35;
   --grain-opacity:.17;
   --grain-blend:soft-light;
+  --film-bg:#030a06;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;background:var(--night)}
@@ -72,13 +82,15 @@ button{color:inherit}
 .frame-lines::before,.frame-lines::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--line);opacity:.55}
 .frame-lines::before{left:5vw}.frame-lines::after{right:5vw}
 .mono{font:400 .67rem/1.3 var(--mono);letter-spacing:.15em;text-transform:uppercase}
+.section-index{color:var(--mist);margin-bottom:2.4rem}
 
 /* persistent controls */
 .topbar{
   position:fixed;z-index:80;top:0;left:0;right:0;height:76px;padding:0 5vw;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-  background:linear-gradient(to bottom,var(--bar-fade),transparent);
+  background:linear-gradient(to bottom,var(--bar-fade),transparent);color:var(--ink);transition:background .35s ease,color .35s ease;
 }
+.on-film .topbar{--bar-fade:rgba(5,11,7,.88);--ink:#eef4e8;--mist:#aebaa9;--green:#9ee6a4;--line:rgba(199,239,204,.24)}
 .brand{font:400 1.12rem/1 var(--serif);text-decoration:none;letter-spacing:.01em}
 .index{color:var(--mist);justify-self:center}
 .controls{justify-self:end;display:flex;gap:.9rem;align-items:center}
@@ -90,130 +102,215 @@ html[data-theme="dark"] .theme-orbit i{transform:translateX(10px)}
 .language button{border:0;background:none;padding:.45rem;cursor:pointer;color:var(--mist);font:400 .62rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .language button[aria-pressed="true"]{color:var(--green)}
 .language i{font-style:normal;color:var(--line)}
-.side-nav{position:fixed;z-index:75;left:calc(2.5vw - 10px);top:50%;transform:translateY(-50%);display:grid;gap:1rem}
-.side-nav a{width:20px;height:20px;display:grid;place-items:center;text-decoration:none;color:var(--mist);font:400 .55rem/1 var(--mono)}
+.side-nav{position:fixed;z-index:75;left:calc(2.5vw - 10px);top:50%;transform:translateY(-50%);display:grid;gap:1rem;color:var(--mist);transition:color .35s ease}
+.on-film .side-nav{color:#c9d6c4}
+.on-contact .side-nav{color:var(--night)}
+.side-nav a{width:20px;height:20px;display:grid;place-items:center;text-decoration:none;color:inherit;opacity:.55;font:400 .55rem/1 var(--mono);transition:opacity .25s ease}
 .side-nav a::after{content:"";width:3px;height:3px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;transition:.25s ease}
-.side-nav a span{position:absolute;opacity:0;pointer-events:none}
-.side-nav a.active{color:var(--green)}
-.side-nav a.active::after{box-shadow:0 0 0 5px rgba(158,230,164,.1)}
+.side-nav a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.side-nav a.active{opacity:1}
+.side-nav a.active::after{width:5px;height:5px;box-shadow:0 0 0 5px color-mix(in srgb,currentColor 18%,transparent)}
 
 /* opening title sequence */
-.hero{position:relative;min-height:118svh;display:grid;align-items:start;overflow:hidden}
+.hero{position:relative;min-height:112svh;display:grid;align-items:start;overflow:hidden}
 .hero-bg{position:absolute;inset:-7%;background:
-  linear-gradient(90deg,var(--veil-a) 0%,var(--veil-b) 50%,var(--veil-c) 100%),
+  linear-gradient(90deg,var(--veil-a) 0%,var(--veil-b) 72%,var(--veil-c) 100%),
   linear-gradient(0deg,var(--night) 0%,transparent 38%),
-  url("assets/choco-flow-poster.webp") center/cover no-repeat;
-  filter:saturate(.62) contrast(1.12);transform:scale(1.04);opacity:.78;
+  url("assets/knowni-film.webp") 30% center/cover no-repeat;
+  filter:blur(16px) saturate(.62) contrast(1.08);transform:scale(1.06);opacity:.8;
 }
 .hero-glow{position:absolute;width:60vw;height:60vw;right:-22vw;top:-15vw;border-radius:50%;background:var(--green-2);filter:blur(140px);opacity:.22}
-.hero-inner{position:relative;z-index:2;width:100%;min-height:100svh;padding:19vh 9vw 9vh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.55fr);gap:5vw;align-items:center}
+.hero-inner{position:relative;z-index:2;width:100%;min-height:100svh;padding:17vh 9vw 9vh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.55fr);gap:5vw;align-items:center}
 .eyebrow{display:flex;align-items:center;gap:1rem;color:var(--green)}
 .eyebrow::before{content:"";display:block;width:44px;height:1px;background:currentColor}
 h1{font:400 clamp(4.4rem,10.5vw,10rem)/.79 var(--serif);letter-spacing:-.055em;max-width:8.2ch;margin-top:1.7rem;text-wrap:balance}
 h1 em{font-weight:400;color:var(--green)}
 .hero-copy p{max-width:54ch;margin-top:2.2rem;color:var(--mist);font-size:clamp(.78rem,1vw,.94rem);line-height:1.8}
-.hero-meta{margin-top:3.4rem;display:flex;gap:2rem;flex-wrap:wrap;color:var(--mist)}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2.4rem}
+.btn{display:inline-flex;align-items:center;gap:.7rem;min-height:46px;padding:0 1.25rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;font:400 .64rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--green);border-color:var(--green);color:var(--night)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.hero-meta{margin-top:3rem;display:flex;gap:2rem;flex-wrap:wrap;color:var(--mist)}
 .hero-meta span:last-child{color:var(--green)}
-.artifact{justify-self:end;width:min(100%,420px);position:relative;perspective:1100px}
+.artifact{justify-self:end;width:min(100%,330px);position:relative;perspective:1100px}
 .artifact::before{content:"";position:absolute;inset:-1.5rem;border:1px solid var(--line);transform:translate(13px,-12px);opacity:.55}
-.artifact-card{position:relative;padding:1.2rem;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 35px 100px var(--shadow);transform:rotateY(-6deg) rotateX(2deg)}
+.artifact-card{position:relative;padding:1.1rem;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 35px 100px var(--shadow);transform:rotateY(-6deg) rotateX(2deg)}
 .artifact-head,.artifact-foot{display:flex;justify-content:space-between;gap:1rem;color:var(--mist)}
-.artifact-display{margin:1rem 0;border:1px solid rgba(158,230,164,.25);aspect-ratio:4/5;overflow:hidden;background:#09140d}
-.artifact-display img{width:100%;height:100%;object-fit:cover;object-position:top;filter:saturate(.75) hue-rotate(40deg) contrast(1.05)}
+.artifact-head b{font-weight:400;color:var(--ink)}
+.artifact-display{position:relative;margin:.9rem 0 .7rem;border:1px solid rgba(158,230,164,.25);aspect-ratio:9/16;overflow:hidden;background:#09140d}
+.artifact-display video{display:block;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .35s ease}
+.artifact-display video.is-swapping{opacity:0}
+.reel-progress{height:1px;background:var(--line);margin-bottom:.8rem;overflow:hidden}
+.reel-progress span{display:block;height:100%;width:100%;background:var(--green);transform:scaleX(0);transform-origin:left}
 .artifact-foot b{font-weight:400;color:var(--green)}
-.scroll-cue{position:absolute;z-index:3;left:9vw;bottom:7vh;display:flex;align-items:center;gap:1rem;color:var(--mist)}
-.scroll-cue i{display:block;width:70px;height:1px;background:var(--line);overflow:hidden}
-.scroll-cue i::after{content:"";display:block;width:100%;height:100%;background:var(--green);transform-origin:left;animation:scan 2.4s ease-in-out infinite}
-@keyframes scan{0%{transform:scaleX(0)}55%{transform:scaleX(1)}100%{transform:translateX(110%)}}
+.chip{position:absolute;z-index:3;display:flex;gap:.6rem;align-items:center;padding:.7rem .95rem;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);box-shadow:0 18px 40px var(--shadow);font:400 .58rem/1.25 var(--mono);letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;animation:float 6s ease-in-out infinite}
+.chip i{flex:none;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.chip-a{left:-42%;top:14%}
+.chip-b{right:-14%;top:50%;animation-delay:-2s}
+.chip-c{left:-30%;bottom:9%;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-10px)}}
 
-/* project scenes */
-.scene{position:relative;height:210svh;border-top:1px solid var(--line);--accent:#9ee6a4}
-.scene-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--night);display:grid;align-items:center;padding:9vh 9vw 8vh}
-.scene-bg{position:absolute;inset:-9%;background-position:center;background-size:cover;filter:blur(18px) saturate(.55) brightness(var(--scene-brightness));transform:scale(1.12);opacity:.64}
-.scene-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--veil-c),var(--veil-b) 50%,var(--veil-a)),linear-gradient(0deg,var(--night),transparent 45%,var(--veil-c))}
-.scene[data-scene="1"] .scene-bg{background-image:url("assets/choco-flow-poster.webp")}
-.scene[data-scene="2"] .scene-bg{background-image:url("assets/creva-card-poster.webp")}
-.scene[data-scene="3"] .scene-bg{background-image:url("assets/asegura-flow-poster.webp")}
-.scene-grid{position:relative;z-index:2;width:100%;display:grid;grid-template-columns:minmax(0,.76fr) minmax(320px,1.24fr);gap:5vw;align-items:center}
-.scene-copy{position:relative;z-index:3}
-.scene-no{font:400 clamp(6rem,14vw,13rem)/.7 var(--serif);color:color-mix(in srgb,var(--green) 10%,transparent);position:absolute;top:-2.2rem;left:-.35rem;z-index:-1}
-.kicker{color:var(--green);display:flex;gap:.9rem;align-items:center}
-.kicker span{color:var(--mist)}
-.scene h2{font:400 clamp(3.1rem,6.4vw,6.8rem)/.86 var(--serif);letter-spacing:-.045em;margin-top:1.2rem;max-width:8.5ch;text-wrap:balance}
-.scene h2 em{color:var(--green);font-weight:400}
-.scene .body{margin-top:2rem;max-width:49ch;color:var(--mist);font-size:clamp(.75rem,.9vw,.9rem);line-height:1.8}
-.project-link{display:inline-flex;gap:1rem;align-items:center;margin-top:2.1rem;text-decoration:none;color:var(--green);font:400 .68rem/1 var(--mono);letter-spacing:.13em;text-transform:uppercase}
-.project-link::before{content:"↗";width:34px;height:34px;border:1px solid var(--line);display:grid;place-items:center;border-radius:50%;transition:.3s ease}
-.project-link:hover::before{background:var(--green);color:var(--night);transform:rotate(45deg)}
-.cinema{position:relative;margin:0;justify-self:end;width:min(100%,680px)}
-.cinema::before{content:"";position:absolute;inset:-14px;border:1px solid var(--line)}
-.cinema-screen{position:relative;overflow:hidden;border:1px solid rgba(211,246,216,.3);background:#030805;box-shadow:0 35px 100px rgba(0,0,0,.55)}
-.cinema-screen::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 80px rgba(0,0,0,.36)}
-.cinema video{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:#030805}
-.cinema figcaption{display:flex;justify-content:space-between;gap:1rem;margin-top:1.35rem;color:var(--mist)}
-.cinema figcaption span:last-child{color:var(--green)}
-.hud{position:absolute;z-index:2;inset:1rem;pointer-events:none}
-.hud::before,.hud::after{content:"";position:absolute;width:30px;height:30px;border-color:var(--screen-green)}
-.hud::before{top:0;left:0;border-top:1px solid;border-left:1px solid}.hud::after{right:0;bottom:0;border-right:1px solid;border-bottom:1px solid}
-.status{position:absolute;top:1rem;right:1rem;display:flex;gap:.55rem;align-items:center;color:var(--screen-green)}
-.status::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor}
-.progress{position:absolute;z-index:4;right:5vw;bottom:3.5vh;left:5vw;height:1px;background:var(--line)}
-.progress span{display:block;height:100%;background:var(--green);width:33.333%;transform-origin:left}
+/* principle strip */
+.strip{position:relative;z-index:2;background:var(--ink);color:var(--night);overflow:hidden;padding:1.1rem 0}
+.strip-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
+.strip-run{display:flex;align-items:center;gap:2.2rem;padding-right:2.2rem}
+.strip-run span{font:400 .64rem/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;white-space:nowrap}
+.strip-run i{font-style:normal;font-size:.5rem;color:var(--green-2)}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
-/* off-screen reel */
+/* 01 · the principle */
+.story{padding:17vh 9vw 14vh}
+.story-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:7vw;align-items:start}
+.story h2,.principles h2{font:400 clamp(3rem,6.2vw,6.6rem)/.9 var(--serif);letter-spacing:-.045em;max-width:12ch;text-wrap:balance}
+.story h2 em,.principles h2 em{color:var(--green)}
+.story-copy{padding-top:.6rem}
+.story-copy p{color:var(--mist);line-height:1.85;font-size:clamp(.8rem,1vw,.94rem)}
+.story-copy p+p{margin-top:1.2rem}
+.impact{display:grid;grid-template-columns:repeat(3,1fr);margin-top:11vh;border-top:1px solid var(--line)}
+.impact article{padding:2.2rem 2rem 0 0;border-right:1px solid var(--line)}
+.impact article+article{padding-left:2rem}
+.impact article:last-child{border-right:0}
+.impact strong{display:block;font:400 clamp(3.6rem,7vw,6.8rem)/.85 var(--serif);letter-spacing:-.04em;color:var(--green)}
+.impact span{display:block;margin-top:1rem;color:var(--mist);font-size:.72rem;line-height:1.65;max-width:28ch}
+
+/* 02 · the work: pinned scroll films */
+.work{position:relative;background:var(--film-bg);color:var(--film-ink);padding:16vh 0 6vh}
+.work-head{padding:0 9vw;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:end}
+.work-head .section-index{color:var(--film-mist)}
+.work-head h2{font:400 clamp(3.2rem,7vw,7.4rem)/.88 var(--serif);letter-spacing:-.045em;max-width:9ch}
+.work-head h2 em{color:var(--film-accent)}
+.work-head p{color:var(--film-mist);max-width:44ch;justify-self:end;line-height:1.8;font-size:.82rem}
+.reel{padding:9vh 5vw 0}
+.film-track{height:175vh}
+.film{position:sticky;top:calc((100svh - min(86svh,820px))/2);height:min(86svh,820px);min-height:540px;overflow:hidden;isolation:isolate;border-radius:28px;background:#050b07;color:var(--film-ink);box-shadow:0 -12px 55px rgba(0,0,0,.28),0 35px 90px rgba(0,0,0,.55)}
+.film-video{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;background:#050b07}
+.film-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,10,6,.6) 0%,rgba(4,10,6,0) 58%),linear-gradient(180deg,rgba(4,10,6,.55) 0%,rgba(4,10,6,0) 20%,rgba(4,10,6,.1) 48%,rgba(4,10,6,.92) 100%)}
+.film-top{position:absolute;top:clamp(18px,2.6vw,34px);left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.film-badge{display:inline-flex;gap:.85rem;align-items:center}
+.film-badge b{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--film-accent);color:#06110b;font-weight:500;letter-spacing:.04em}
+.film-stamp{display:inline-flex;gap:.6rem;align-items:center;color:var(--film-accent)}
+.film-stamp::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor}
+.film-copy{position:absolute;left:clamp(22px,4.5vw,64px);bottom:clamp(24px,4.6vw,62px);width:min(620px,calc(100% - 44px));text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.film-copy h3{font:400 clamp(2.6rem,5.2vw,5.6rem)/.9 var(--serif);letter-spacing:-.045em;max-width:12ch;text-wrap:balance}
+.film-copy h3 em{color:var(--film-accent)}
+.film-limit{display:inline-flex;gap:.6rem;align-items:center;margin:1.4rem 0 1rem;padding:.55rem .85rem;border:1px solid rgba(158,230,164,.38);border-radius:999px;background:rgba(6,17,11,.45);backdrop-filter:blur(8px);color:#d7f0d4;text-shadow:none}
+.film-limit::before{content:"⊘";color:var(--film-accent);font-size:.8rem;letter-spacing:0}
+.film-copy p{max-width:52ch;color:#dbe4d6;font-size:clamp(.78rem,1vw,.92rem);line-height:1.7}
+.film-links{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1.5rem;text-shadow:none}
+.film-links a{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;padding:0 1.1rem;border-radius:999px;border:1px solid rgba(238,244,232,.32);background:rgba(6,17,11,.35);backdrop-filter:blur(8px);text-decoration:none;font:400 .62rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;transition:background .25s ease,color .25s ease,transform .25s ease}
+.film-links a:first-child{background:var(--film-accent);border-color:var(--film-accent);color:#06110b}
+.film-links a:hover{transform:translateY(-2px)}
+.film-links a:not(:first-child):hover{background:rgba(238,244,232,.14)}
+/* screen mode: a phone recording until the cinematic film exists */
+.film-backdrop{position:absolute;inset:-8%;z-index:-3;background-position:center;background-size:cover;filter:blur(30px) saturate(.7) brightness(.4);transform:scale(1.1)}
+.film--screen .film-shade{background:linear-gradient(90deg,rgba(4,10,6,.9) 0%,rgba(4,10,6,.35) 58%,rgba(4,10,6,.55) 100%),linear-gradient(0deg,rgba(4,10,6,.7),transparent 45%)}
+.film--flip .film-shade{background:linear-gradient(270deg,rgba(4,10,6,.9) 0%,rgba(4,10,6,.35) 58%,rgba(4,10,6,.55) 100%),linear-gradient(0deg,rgba(4,10,6,.7),transparent 45%)}
+.film-device{position:absolute;top:53%;right:clamp(24px,9vw,150px);transform:translateY(-50%) rotate(2deg);height:74%;aspect-ratio:9/19.5;padding:9px;border-radius:36px;background:#0a0e0b;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(158,230,164,.08),0 0 80px rgba(158,230,164,.08)}
+.film-device video{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:28px;background:#030805}
+.film--flip .film-device{right:auto;left:clamp(24px,9vw,150px);transform:translateY(-50%) rotate(-2deg)}
+.film--flip .film-copy{left:auto;right:clamp(22px,4.5vw,64px)}
+.reel-note{padding:3vh 9vw 0;color:var(--film-mist)}
+
+/* 03 · principles */
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;padding:17vh 9vw;border-top:1px solid var(--line)}
+.orbit{position:relative;width:min(100%,560px);aspect-ratio:1;display:grid;place-items:center;justify-self:center}
+.orbit-rings{position:absolute;inset:0}
+.orbit-rings span{position:absolute;border-radius:50%;border:1px solid var(--line)}
+.orbit-rings span:nth-child(1){inset:3%;border-style:dashed;animation:spin 90s linear infinite}
+.orbit-rings span:nth-child(2){inset:19%}
+.orbit-rings span:nth-child(3){inset:34%;background:color-mix(in srgb,var(--green) 6%,transparent)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.orbit-core{position:relative;z-index:2;width:36%;aspect-ratio:1;border-radius:50%;background:var(--green);color:var(--night);display:grid;place-items:center;text-align:center;padding:1rem;font:400 clamp(1.5rem,2.6vw,2.4rem)/.95 var(--serif);box-shadow:0 30px 80px color-mix(in srgb,var(--green) 32%,transparent)}
+.orbit-label{position:absolute;z-index:3;padding:.6rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);box-shadow:0 14px 30px var(--shadow);white-space:nowrap}
+.orbit-a{left:-2%;top:20%}.orbit-b{right:-4%;top:30%}.orbit-c{left:4%;bottom:16%}.orbit-d{right:2%;bottom:8%}
+.principles-copy>p{max-width:52ch;margin:2rem 0 2.2rem;color:var(--mist);line-height:1.85;font-size:clamp(.8rem,1vw,.94rem)}
+.rules{list-style:none;display:grid;gap:1.1rem;border-top:1px solid var(--line);padding-top:1.6rem}
+.rules li{display:grid;grid-template-columns:22px 1fr;gap:.9rem;align-items:start;color:var(--mist);font-size:.78rem;line-height:1.65}
+.rules svg{width:18px;height:18px;margin-top:.15rem;color:var(--green)}
+.rules strong{display:block;color:var(--ink);font:400 1.35rem/1.1 var(--serif);margin-bottom:.2rem}
+
+/* 04 · archive */
 .archive{position:relative;padding:15vh 9vw;background:var(--archive);border-top:1px solid var(--line)}
 .archive-head{display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:end;margin-bottom:9vh}
-.archive h2,.contact h2{font:400 clamp(3.5rem,8vw,8rem)/.86 var(--serif);letter-spacing:-.045em;max-width:9ch}
+.archive h2{font:400 clamp(3.5rem,8vw,8rem)/.86 var(--serif);letter-spacing:-.045em;max-width:9ch}
 .archive-intro{max-width:46ch;color:var(--mist);line-height:1.75;font-size:.82rem;justify-self:end}
 .project-list{list-style:none;border-top:1px solid var(--line)}
 .project-list li{border-bottom:1px solid var(--line)}
 .project-list a,.project-list .row{display:grid;grid-template-columns:64px minmax(0,1.4fr) minmax(180px,.8fr) auto;gap:2rem;align-items:center;padding:1.7rem 0;text-decoration:none;transition:.3s ease}
-.project-list a:hover{padding-left:1rem;padding-right:1rem;background:rgba(158,230,164,.035)}
+.project-list a:hover{padding-left:1rem;padding-right:1rem;background:color-mix(in srgb,var(--green) 6%,transparent)}
 .project-list .num{color:var(--mist)}
 .project-list .name{font:400 clamp(1.5rem,2.5vw,2.5rem)/1 var(--serif)}
 .project-list .claim{color:var(--mist);font-size:.68rem;line-height:1.6}
 .project-list .arrow{color:var(--green);font-size:1.2rem}
 
-.contact{min-height:92svh;padding:17vh 9vw 7vh;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,var(--contact),var(--night) 68%);border-top:1px solid var(--line)}
-.contact .prompt{color:var(--green);margin-bottom:2rem}
-.contact h2{max-width:11ch}
-.contact-links{margin-top:5rem;display:flex;flex-wrap:wrap;gap:1rem}
-.contact-links a{padding:.9rem 1.2rem;border:1px solid var(--line);text-decoration:none;font-size:.68rem;transition:.25s ease}
-.contact-links a:hover{background:var(--green);border-color:var(--green);color:var(--night)}
-.footer{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;color:var(--mist);margin-top:8vh}
+/* 05 · contact */
+.contact{position:relative;overflow:hidden;min-height:92svh;padding:17vh 9vw 7vh;display:flex;flex-direction:column;justify-content:space-between;background:var(--green);color:var(--night)}
+.contact::before,.contact::after{content:"";position:absolute;border-radius:50%;border:1px solid color-mix(in srgb,var(--night) 22%,transparent);pointer-events:none}
+.contact::before{width:520px;height:520px;right:-160px;top:-200px;box-shadow:0 0 0 80px color-mix(in srgb,var(--night) 5%,transparent),0 0 0 160px color-mix(in srgb,var(--night) 3%,transparent)}
+.contact::after{width:380px;height:380px;left:-180px;bottom:-200px}
+.contact ::selection{background:var(--night);color:var(--green)}
+.contact>div,.contact .footer{position:relative;z-index:1}
+.contact .prompt{opacity:.75;margin-bottom:2rem}
+.contact h2{font:400 clamp(3.5rem,8vw,8rem)/.86 var(--serif);letter-spacing:-.045em;max-width:11ch}
+.contact-links{margin-top:4.5rem;display:flex;flex-wrap:wrap;gap:.8rem}
+.contact-links a{display:inline-flex;align-items:center;min-height:48px;padding:0 1.3rem;border:1px solid color-mix(in srgb,var(--night) 45%,transparent);border-radius:999px;text-decoration:none;font:400 .66rem/1 var(--mono);letter-spacing:.14em;transition:.25s ease}
+.contact-links a:first-child{background:var(--night);color:var(--green);border-color:var(--night)}
+.contact-links a:hover{transform:translateY(-2px);background:var(--night);color:var(--green);border-color:var(--night)}
+.footer{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;opacity:.75;margin-top:8vh}
 
 @supports (animation-timeline:view()){
   @media (prefers-reduced-motion:no-preference) and (min-width:761px){
     .hero-bg{animation:heroPush linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
     .hero-copy,.artifact{animation:heroFade linear both;animation-timeline:view();animation-range:exit 10% exit 85%}
-    .scene{view-timeline-name:--scene;view-timeline-axis:block}
-    .scene-bg{animation:bgMove linear both;animation-timeline:--scene;animation-range:contain 0% contain 100%}
-    .scene-copy{animation:copyMove linear both;animation-timeline:--scene;animation-range:contain 0% contain 100%}
-    .cinema{animation:screenMove linear both;animation-timeline:--scene;animation-range:contain 0% contain 100%}
-    .progress span{animation:lineFill linear both;animation-timeline:--scene;animation-range:contain 8% contain 88%}
+    .film-track{view-timeline-name:--track;view-timeline-axis:block}
+    .film-copy{animation:filmCopy linear both;animation-timeline:--track;animation-range:entry 45% contain 8%}
+    .film{animation:filmLeave linear both;animation-timeline:--track;animation-range:exit 0% exit 70%}
   }
 }
 @keyframes heroPush{to{transform:scale(1.17);opacity:.12}}
 @keyframes heroFade{0%,25%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-70px)}}
-@keyframes bgMove{0%{transform:scale(1.2) translateY(3%)}50%{transform:scale(1.1)}100%{transform:scale(1.18) translateY(-3%)}}
-@keyframes copyMove{0%,8%{opacity:0;transform:translateY(55px)}24%,68%{opacity:1;transform:none}88%,100%{opacity:0;transform:translateY(-45px)}}
-@keyframes screenMove{0%,5%{opacity:0;transform:translateY(70px) scale(.88)}26%,68%{opacity:1;transform:none}90%,100%{opacity:0;transform:translateY(-55px) scale(.94)}}
-@keyframes lineFill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes filmCopy{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@keyframes filmLeave{to{transform:scale(.93);filter:brightness(.55)}}
 
+@media (max-width:1180px){.chip{display:none}}
 @media (max-width:920px){
-  .hero-inner{grid-template-columns:1fr;padding-top:16vh}.artifact{width:min(66vw,380px);justify-self:end;margin-top:-6vh;opacity:.72}
-  .scene-grid{grid-template-columns:1fr;gap:4vh}.scene-copy{max-width:680px}.scene h2{max-width:10ch}.cinema{width:min(76vw,620px)}
-  .archive-head{grid-template-columns:1fr}.archive-intro{justify-self:start}
+  .hero-inner{grid-template-columns:1fr;padding-top:16vh}.artifact{width:min(60vw,320px);justify-self:end;margin-top:-4vh}
+  .story-grid,.principles{grid-template-columns:1fr}.principles{gap:10vh}
+  .work-head,.archive-head{grid-template-columns:1fr}.work-head p,.archive-intro{justify-self:start}
+  .film-device,.film--flip .film-device{height:62%}
 }
 @media (max-width:760px){
   .frame-lines::before{left:1rem}.frame-lines::after{right:1rem}.topbar{padding:0 1.5rem;grid-template-columns:1fr auto}.index{display:none}.side-nav{display:none}
-  .hero{min-height:100svh}.hero-inner{padding:16vh 1.5rem 11vh;display:block}.hero-copy p{font-size:.76rem}.artifact{width:68vw;margin-top:4rem}.scroll-cue{display:none}.theme-toggle>span:last-child{display:none}.controls{gap:.35rem}
+  .hero{min-height:100svh}.hero-inner{padding:16vh 1.5rem 11vh;display:block}.hero-copy p{font-size:.76rem}.artifact{width:min(72vw,300px);margin:4rem 0 0 auto}.theme-toggle>span:last-child{display:none}.controls{gap:.35rem}
   h1{font-size:clamp(4.1rem,20vw,7rem)}
-  .scene{height:auto}.scene-stage{position:relative;height:auto;min-height:100svh;padding:13vh 1.5rem 10vh}.scene-grid{gap:4rem}.scene h2{font-size:clamp(3.3rem,15vw,5.8rem)}.cinema{width:calc(100% - 1rem);justify-self:center}.progress{display:none}
+  .hero-actions .btn{flex:1 1 auto;justify-content:center}
+  .story,.principles{padding:12vh 1.5rem}.impact{grid-template-columns:1fr;margin-top:8vh}
+  .impact article,.impact article+article{padding:1.6rem 0;border-right:0;border-bottom:1px solid var(--line)}.impact article:last-child{border-bottom:0}
+  .work{padding:12vh 0 4vh}.work-head{padding:0 1.5rem}.reel{padding:7vh .75rem 0}.reel-note{padding:3vh 1.5rem 0}
+  .film-track{height:150svh}
+  .film{top:calc((100svh - min(84svh,720px))/2);height:min(84svh,720px);min-height:580px;border-radius:22px}
+  .film-top{left:1.1rem;right:1.1rem;top:1.1rem}.film-stamp{display:none}
+  .film-copy,.film--flip .film-copy{left:1.1rem;right:1.1rem;bottom:1.2rem;width:auto}
+  .film-copy h3{font-size:clamp(2.3rem,11vw,3.2rem)}
+  .film-limit{margin:1rem 0 .8rem}
+  .film-copy p{font-size:.76rem;line-height:1.6}
+  .film-links{margin-top:1.1rem}.film-links a{flex:1 1 auto;justify-content:center}
+  .film-device,.film--flip .film-device{top:4.4rem;left:50%;right:auto;transform:translateX(-50%);height:36%;border-radius:26px;padding:6px}
+  .film-device video{border-radius:21px}
+  .film--cinema .film-shade{background:linear-gradient(180deg,rgba(4,10,6,.5) 0%,rgba(4,10,6,.12) 22%,rgba(4,10,6,.82) 48%,rgba(4,10,6,.96) 100%)}
+  .film--screen .film-shade,.film--flip .film-shade{background:linear-gradient(180deg,rgba(4,10,6,.25) 0%,rgba(4,10,6,.55) 38%,rgba(4,10,6,.96) 62%)}
+  .artifact::before{inset:-.9rem;transform:none}
+  .orbit-label{font-size:.54rem;padding:.5rem .7rem}.orbit-b{right:0}.orbit-a{left:0}
   .archive,.contact{padding-left:1.5rem;padding-right:1.5rem}.archive{padding-top:12vh}.project-list a,.project-list .row{grid-template-columns:38px 1fr auto;gap:1rem}.project-list .claim{display:none}
   .contact-links{display:grid}.footer{font-size:.58rem}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-cue i::after{animation:none}.scene{height:auto}.scene-stage{position:relative;min-height:100svh}.hero-bg,.hero-copy,.artifact,.scene-bg,.scene-copy,.cinema,.progress span{animation:none!important}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .strip-track,.chip,.orbit-rings span{animation:none!important}
+  .film-track{height:auto}.film{position:relative;top:auto;margin-bottom:1.5rem}
+  .hero-bg,.hero-copy,.artifact,.film,.film-copy{animation:none!important}
+}
 </style>
 </head>
 <body>
@@ -221,8 +318,8 @@ h1 em{font-weight:400;color:var(--green)}
 <div class="frame-lines" aria-hidden="true"></div>
 
 <header class="topbar">
-  <a class="brand" href="#top">Luis Alejandro Cárdenas</a>
-  <span class="index mono" aria-live="polite">FRAME <b id="frameIndex">000</b> / 007</span>
+  <a class="brand" href="#top">Luis Cárdenas</a>
+  <span class="index mono" aria-live="polite">FRAME <b id="frameIndex">000</b> / 008</span>
   <div class="controls">
     <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Use dark theme">
       <span class="theme-orbit" aria-hidden="true"><i></i></span><span id="themeLabel">Dark</span>
@@ -235,9 +332,12 @@ h1 em{font-weight:400;color:var(--green)}
 
 <nav class="side-nav" aria-label="Sections">
   <a href="#top" class="active" data-dot="top"><span>Intro</span></a>
+  <a href="#prufture" data-dot="prufture"><span>Prufture</span></a>
+  <a href="#knowni" data-dot="knowni"><span>Knowni</span></a>
   <a href="#choco" data-dot="choco"><span>Choco</span></a>
   <a href="#creva" data-dot="creva"><span>Creva</span></a>
   <a href="#asegura" data-dot="asegura"><span>Asegura</span></a>
+  <a href="#principles" data-dot="principles"><span>Principles</span></a>
   <a href="#archive" data-dot="archive"><span>Archive</span></a>
   <a href="#contact" data-dot="contact"><span>Contact</span></a>
 </nav>
@@ -247,118 +347,210 @@ h1 em{font-weight:400;color:var(--green)}
     <div class="hero-bg" aria-hidden="true"></div><div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="eyebrow mono" data-en="AI × MONEY × LATIN AMERICA" data-es="IA × DINERO × LATINOAMÉRICA">AI × MONEY × LATIN AMERICA</div>
+        <div class="eyebrow mono" data-en="AI × MONEY × PRIVACY × LATIN AMERICA" data-es="IA × DINERO × PRIVACIDAD × LATINOAMÉRICA">AI × MONEY × PRIVACY × LATIN AMERICA</div>
         <h1 data-en="I build systems that know when to <em>stop.</em>" data-es="Construyo sistemas que saben cuándo <em>detenerse.</em>">I build systems that know when to <em>stop.</em></h1>
-        <p data-en="AI agents and financial products for Latin America. Built around explicit limits, human judgment and outcomes you can verify." data-es="Agentes de IA y productos financieros para América Latina. Construidos alrededor de límites explícitos, criterio humano y resultados que puedes verificar.">AI agents and financial products for Latin America. Built around explicit limits, human judgment and outcomes you can verify.</p>
+        <p data-en="AI agents, privacy tools and financial products for Latin America. Built around explicit limits, human judgment and outcomes you can verify." data-es="Agentes de IA, herramientas de privacidad y productos financieros para América Latina. Construidos alrededor de límites explícitos, criterio humano y resultados que puedes verificar.">AI agents, privacy tools and financial products for Latin America. Built around explicit limits, human judgment and outcomes you can verify.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#prufture" data-en="See the work ↓" data-es="Ver el trabajo ↓">See the work ↓</a>
+          <a class="btn btn-ghost" href="#contact" data-en="Start a conversation" data-es="Empezar una conversación">Start a conversation</a>
+        </div>
         <div class="hero-meta mono"><span>BOGOTÁ · COL</span><span data-en="AVAILABLE FOR THE RIGHT PROBLEM" data-es="DISPONIBLE PARA EL PROBLEMA CORRECTO">AVAILABLE FOR THE RIGHT PROBLEM</span></div>
       </div>
-      <figure class="artifact" aria-label="A framed interface from Choco">
+      <figure class="artifact" aria-label="Product reel: real recordings of Choco, Creva and Asegura">
+        <div class="chip chip-a"><i aria-hidden="true"></i><span data-en="The agent holds no keys" data-es="El agente no guarda llaves">The agent holds no keys</span></div>
+        <div class="chip chip-b"><i aria-hidden="true"></i><span data-en="Missing evidence stays missing" data-es="Lo que falta no se inventa">Missing evidence stays missing</span></div>
+        <div class="chip chip-c"><i aria-hidden="true"></i><span data-en="A human takes over" data-es="Un humano toma el relevo">A human takes over</span></div>
         <div class="artifact-card">
-          <div class="artifact-head mono"><span>ARTIFACT 001</span><span>LIVE SYSTEM</span></div>
-          <div class="artifact-display"><img src="assets/choco-flow-poster.webp" alt="Choco financial agent interface" width="720" height="1440"></div>
-          <div class="artifact-foot mono"><span>AGENT / FINTECH</span><b>VERIFIABLE</b></div>
+          <div class="artifact-head mono"><span id="reelIndex">ARTIFACT 001</span><b id="reelName">CHOCO</b></div>
+          <div class="artifact-display"><video id="heroReel" src="assets/choco-flow.mp4" poster="assets/choco-flow-poster.webp" muted playsinline preload="metadata" aria-label="Recorded product flow"></video></div>
+          <div class="reel-progress" aria-hidden="true"><span id="reelBar"></span></div>
+          <div class="artifact-foot mono"><span id="reelTag">VOICE → SIGNATURE</span><b data-en="LIVE" data-es="EN VIVO">LIVE</b></div>
         </div>
       </figure>
     </div>
-    <div class="scroll-cue mono"><i aria-hidden="true"></i><span data-en="SCROLL TO ENTER" data-es="DESPLAZA PARA ENTRAR">SCROLL TO ENTER</span></div>
   </section>
 
-  <section class="scene" id="choco" data-scene="1" data-section="choco">
-    <div class="scene-stage">
-      <div class="scene-bg" aria-hidden="true"></div>
-      <div class="scene-grid">
-        <div class="scene-copy">
-          <span class="scene-no" aria-hidden="true">01</span>
-          <div class="kicker mono">01 <span>CELO · MINIPAY</span></div>
-          <h2 data-en="Money moves only when <em>you sign.</em>" data-es="El dinero se mueve solo cuando <em>tú firmas.</em>">Money moves only when <em>you sign.</em></h2>
-          <p class="body" data-en="Choco turns a spoken or typed instruction into a family remittance on Celo—from USDC to Kenyan shillings, with an on-chain receipt. The agent never holds a private key." data-es="Choco convierte una instrucción hablada o escrita en una remesa familiar sobre Celo: de USDC a chelines kenianos, con recibo en cadena. El agente nunca custodia una llave privada.">Choco turns a spoken or typed instruction into a family remittance on Celo—from USDC to Kenyan shillings, with an on-chain receipt. The agent never holds a private key.</p>
-          <a class="project-link" href="https://usechoco.app" target="_blank" rel="noopener">Explore Choco</a>
-        </div>
-        <figure class="cinema">
-          <div class="cinema-screen"><div class="hud" aria-hidden="true"></div><span class="status mono" data-en="SYSTEM ONLINE" data-es="SISTEMA ACTIVO">SYSTEM ONLINE</span><video src="assets/choco-flow.mp4" poster="assets/choco-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Choco transfer flow"></video></div>
-          <figcaption class="mono"><span data-en="VOICE → INTENT → SIGNATURE" data-es="VOZ → INTENCIÓN → FIRMA">VOICE → INTENT → SIGNATURE</span><span>00:01:42</span></figcaption>
-        </figure>
+  <div class="strip" aria-label="Principles">
+    <div class="strip-track">
+      <div class="strip-run">
+        <span data-en="Agents with limits" data-es="Agentes con límites">Agents with limits</span><i>●</i>
+        <span data-en="Money waits for your signature" data-es="El dinero espera tu firma">Money waits for your signature</span><i>●</i>
+        <span data-en="Answers, not documents" data-es="Respuestas, no documentos">Answers, not documents</span><i>●</i>
+        <span data-en="Missing evidence stays missing" data-es="Lo que falta, falta">Missing evidence stays missing</span><i>●</i>
+        <span data-en="Proof you can check" data-es="Pruebas que puedes revisar">Proof you can check</span><i>●</i>
       </div>
-      <div class="progress" aria-hidden="true"><span></span></div>
+      <div class="strip-run" aria-hidden="true">
+        <span data-en="Agents with limits" data-es="Agentes con límites">Agents with limits</span><i>●</i>
+        <span data-en="Money waits for your signature" data-es="El dinero espera tu firma">Money waits for your signature</span><i>●</i>
+        <span data-en="Answers, not documents" data-es="Respuestas, no documentos">Answers, not documents</span><i>●</i>
+        <span data-en="Missing evidence stays missing" data-es="Lo que falta, falta">Missing evidence stays missing</span><i>●</i>
+        <span data-en="Proof you can check" data-es="Pruebas que puedes revisar">Proof you can check</span><i>●</i>
+      </div>
+    </div>
+  </div>
+
+  <section class="story" id="principle" data-section="top">
+    <div class="section-index mono" data-en="01 / THE PRINCIPLE" data-es="01 / EL PRINCIPIO">01 / THE PRINCIPLE</div>
+    <div class="story-grid">
+      <h2 data-en="Good systems are defined by what they <em>refuse</em> to do." data-es="A un buen sistema lo define lo que se <em>niega</em> a hacer.">Good systems are defined by what they <em>refuse</em> to do.</h2>
+      <div class="story-copy">
+        <p data-en="An agent that moves money should never hold the key. A score should never invent the evidence it lacks. A record should prove the work without exposing the person who did it." data-es="Un agente que mueve dinero nunca debería tener la llave. Un score nunca debería inventar la evidencia que le falta. Un registro debería probar el trabajo sin exponer a la persona que lo hizo.">An agent that moves money should never hold the key. A score should never invent the evidence it lacks. A record should prove the work without exposing the person who did it.</p>
+        <p data-en="I design those limits first, then build the product around them — so people can trust it on the day it matters." data-es="Diseño esos límites primero y después construyo el producto a su alrededor, para que la gente pueda confiar en él el día que importa.">I design those limits first, then build the product around them — so people can trust it on the day it matters.</p>
+      </div>
+    </div>
+    <div class="impact">
+      <article><strong>5</strong><span data-en="products you can open today, each built around one hard limit" data-es="productos que puedes abrir hoy, cada uno construido alrededor de un límite">products you can open today, each built around one hard limit</span></article>
+      <article><strong>11</strong><span data-en="products and prototypes shipped on this page" data-es="productos y prototipos entregados en esta página">products and prototypes shipped on this page</span></article>
+      <article><strong>3</strong><span data-en="chains shipped on — Celo, Base and Stellar" data-es="cadenas donde he entregado — Celo, Base y Stellar">chains shipped on — Celo, Base and Stellar</span></article>
     </div>
   </section>
 
-  <section class="scene" id="creva" data-scene="2" data-section="creva">
-    <div class="scene-stage">
-      <div class="scene-bg" aria-hidden="true"></div>
-      <div class="scene-grid">
-        <div class="scene-copy">
-          <span class="scene-no" aria-hidden="true">02</span>
-          <div class="kicker mono">02 <span>FINTECH · MÉXICO</span></div>
-          <h2 data-en="A score that shows its <em>work.</em>" data-es="Un score que muestra <em>cómo piensa.</em>">A score that shows its <em>work.</em></h2>
-          <p class="body" data-en="Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date; missing evidence stays missing—it is never invented." data-es="Creva ayuda a mujeres emprendedoras a convertir datos financieros dispersos en un score explicable. Cada señal apunta a su fuente y fecha; la evidencia que falta permanece ausente: nunca se inventa.">Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date; missing evidence stays missing—it is never invented.</p>
-          <a class="project-link" href="https://creva-one.vercel.app" target="_blank" rel="noopener">Explore Creva</a>
-        </div>
-        <figure class="cinema">
-          <div class="cinema-screen"><div class="hud" aria-hidden="true"></div><span class="status mono" data-en="TRACE VERIFIED" data-es="TRAZA VERIFICADA">TRACE VERIFIED</span><video src="assets/creva-card.mp4" poster="assets/creva-card-poster.webp" muted loop playsinline preload="metadata" aria-label="Creva financial platform"></video></div>
-          <figcaption class="mono"><span data-en="SOURCE → SIGNAL → SCORE" data-es="FUENTE → SEÑAL → SCORE">SOURCE → SIGNAL → SCORE</span><span>00:00:58</span></figcaption>
-        </figure>
+  <section class="work" id="work" aria-labelledby="workTitle">
+    <div class="work-head">
+      <div>
+        <div class="section-index mono" data-en="02 / THE WORK" data-es="02 / EL TRABAJO">02 / THE WORK</div>
+        <h2 id="workTitle" data-en="Five products. <em>One limit each.</em>" data-es="Cinco productos. <em>Un límite cada uno.</em>">Five products. <em>One limit each.</em></h2>
       </div>
-      <div class="progress" aria-hidden="true"><span style="width:66.666%"></span></div>
+      <p data-en="Each film plays as you reach it. The limit is the product decision everything else was built around." data-es="Cada película se reproduce al llegar a ella. El límite es la decisión de producto alrededor de la cual se construyó todo lo demás.">Each film plays as you reach it. The limit is the product decision everything else was built around.</p>
     </div>
+
+    <div class="reel">
+      <div class="film-track" id="prufture" data-section="prufture">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/prufture-film.mp4" poster="assets/prufture-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>01</b><span data-en="FIELD REPORTING · OFFLINE FIRST" data-es="REPORTE DE CAMPO · SIN CONEXIÓN">FIELD REPORTING · OFFLINE FIRST</span></span><span class="film-stamp">CAPTURE → SIGN → SYNC</span></div>
+          <div class="film-copy">
+            <h3 data-en="Proof from the field. <em>Not the person.</em>" data-es="La prueba del campo. <em>No la persona.</em>">Proof from the field. <em>Not the person.</em></h3>
+            <div class="film-limit mono" data-en="Zero personal data on-chain" data-es="Cero datos personales en cadena">Zero personal data on-chain</div>
+            <p data-en="Prufture lets community reporters document finished work with no signal. The phone signs the evidence and syncs when the network returns — the public record never shows who reported it, or exactly where." data-es="Prufture permite a reporteros comunitarios documentar trabajo terminado sin señal. El teléfono firma la evidencia y la sincroniza cuando vuelve la red: el registro público nunca muestra quién reportó ni el lugar exacto.">Prufture lets community reporters document finished work with no signal. The phone signs the evidence and syncs when the network returns — the public record never shows who reported it, or exactly where.</p>
+            <div class="film-links"><a href="https://prufture.voltarut.com/" target="_blank" rel="noopener" data-en="Explore Prufture ↗" data-es="Explorar Prufture ↗">Explore Prufture ↗</a><a href="https://prufture.voltarut.com/verify/sample" target="_blank" rel="noopener" data-en="Check a real record ↗" data-es="Revisar un registro real ↗">Check a real record ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="knowni" data-section="knowni">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/knowni-film.mp4" poster="assets/knowni-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>02</b><span data-en="PRIVACY · STELLAR" data-es="PRIVACIDAD · STELLAR">PRIVACY · STELLAR</span></span><span class="film-stamp">REQUEST → CONSENT → ANSWER</span></div>
+          <div class="film-copy">
+            <h3 data-en="Prove you qualify. <em>Not who you are.</em>" data-es="Demuestra que calificas. <em>No quién eres.</em>">Prove you qualify. <em>Not who you are.</em></h3>
+            <div class="film-limit mono" data-en="Answers, never documents" data-es="Respuestas, nunca documentos">Answers, never documents</div>
+            <p data-en="To sign a contract you still hand over your whole file. Knowni gives the other party only the answer it needs — valid ID: yes. The journey ran on a real iPhone against Colombia’s registry, and a Soroban contract on Stellar testnet verified a real zero-knowledge proof." data-es="Para firmar un contrato todavía entregas tu expediente completo. Knowni le da a la contraparte solo la respuesta que necesita: documento vigente, sí. El recorrido corrió en un iPhone real contra la Registraduría, y un contrato Soroban en Stellar testnet verificó una prueba de conocimiento cero real.">To sign a contract you still hand over your whole file. Knowni gives the other party only the answer it needs — valid ID: yes. The journey ran on a real iPhone against Colombia’s registry, and a Soroban contract on Stellar testnet verified a real zero-knowledge proof.</p>
+            <div class="film-links"><a href="https://knowni.vercel.app/" target="_blank" rel="noopener" data-en="Explore Knowni ↗" data-es="Explorar Knowni ↗">Explore Knowni ↗</a><a href="https://github.com/LuisAlejandroCR/knowni" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="choco" data-section="choco">
+        <article class="film film--screen">
+          <div class="film-backdrop" style="background-image:url('assets/choco-flow-poster.webp')" aria-hidden="true"></div>
+          <div class="film-device"><video src="assets/choco-flow.mp4" poster="assets/choco-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Choco transfer flow, recorded"></video></div>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>03</b><span>CELO · MINIPAY</span></span><span class="film-stamp" data-en="VOICE → INTENT → SIGNATURE" data-es="VOZ → INTENCIÓN → FIRMA">VOICE → INTENT → SIGNATURE</span></div>
+          <div class="film-copy">
+            <h3 data-en="Money moves only when <em>you sign.</em>" data-es="El dinero se mueve solo cuando <em>tú firmas.</em>">Money moves only when <em>you sign.</em></h3>
+            <div class="film-limit mono" data-en="The agent never holds a key" data-es="El agente nunca custodia una llave">The agent never holds a key</div>
+            <p data-en="Choco turns a spoken or typed instruction into a family remittance on Celo — from USDC to Kenyan shillings, with an on-chain receipt." data-es="Choco convierte una instrucción hablada o escrita en una remesa familiar sobre Celo: de USDC a chelines kenianos, con recibo en cadena.">Choco turns a spoken or typed instruction into a family remittance on Celo — from USDC to Kenyan shillings, with an on-chain receipt.</p>
+            <div class="film-links"><a href="https://usechoco.app" target="_blank" rel="noopener" data-en="Explore Choco ↗" data-es="Explorar Choco ↗">Explore Choco ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="creva" data-section="creva">
+        <article class="film film--screen film--flip">
+          <div class="film-backdrop" style="background-image:url('assets/creva-card-poster.webp')" aria-hidden="true"></div>
+          <div class="film-device"><video src="assets/creva-card.mp4" poster="assets/creva-card-poster.webp" muted loop playsinline preload="metadata" aria-label="Creva financial platform, recorded"></video></div>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>04</b><span>FINTECH · MÉXICO</span></span><span class="film-stamp" data-en="SOURCE → SIGNAL → SCORE" data-es="FUENTE → SEÑAL → SCORE">SOURCE → SIGNAL → SCORE</span></div>
+          <div class="film-copy">
+            <h3 data-en="A score that shows its <em>work.</em>" data-es="Un score que muestra <em>cómo piensa.</em>">A score that shows its <em>work.</em></h3>
+            <div class="film-limit mono" data-en="Missing evidence stays missing" data-es="La evidencia que falta no se inventa">Missing evidence stays missing</div>
+            <p data-en="Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date." data-es="Creva ayuda a mujeres emprendedoras a convertir datos financieros dispersos en un score explicable. Cada señal apunta a su fuente y fecha.">Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date.</p>
+            <div class="film-links"><a href="https://creva-one.vercel.app" target="_blank" rel="noopener" data-en="Explore Creva ↗" data-es="Explorar Creva ↗">Explore Creva ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="asegura" data-section="asegura">
+        <article class="film film--screen">
+          <div class="film-backdrop" style="background-image:url('assets/asegura-flow-poster.webp')" aria-hidden="true"></div>
+          <div class="film-device"><video src="assets/asegura-flow.mp4" poster="assets/asegura-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Asegura conversational insurance flow, recorded"></video></div>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>05</b><span>INSURTECH · COLOMBIA</span></span><span class="film-stamp" data-en="QUESTION → REASON → HANDOFF" data-es="PREGUNTA → RAZÓN → ESCALA">QUESTION → REASON → HANDOFF</span></div>
+          <div class="film-copy">
+            <h3 data-en="A conversation with an <em>exit.</em>" data-es="Una conversación con una <em>salida.</em>">A conversation with an <em>exit.</em></h3>
+            <div class="film-limit mono" data-en="A human takes over at the edge" data-es="En el límite, entra un humano">A human takes over at the edge</div>
+            <p data-en="Asegura guides people from “I don’t know what I need” to a reasoned insurance recommendation, by voice or text. A policy activates only after payment is confirmed." data-es="Asegura lleva a una persona de “no sé qué necesito” a una recomendación de seguros razonada, por voz o texto. La póliza se activa solo después de confirmar el pago.">Asegura guides people from “I don’t know what I need” to a reasoned insurance recommendation, by voice or text. A policy activates only after payment is confirmed.</p>
+            <div class="film-links"><a href="https://asegura-app.vercel.app" target="_blank" rel="noopener" data-en="Explore Asegura ↗" data-es="Explorar Asegura ↗">Explore Asegura ↗</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <p class="reel-note mono" data-en="Recorded on real builds · no mockups presented as working software" data-es="Grabado sobre builds reales · ninguna maqueta se presenta como software funcionando">Recorded on real builds · no mockups presented as working software</p>
   </section>
 
-  <section class="scene" id="asegura" data-scene="3" data-section="asegura">
-    <div class="scene-stage">
-      <div class="scene-bg" aria-hidden="true"></div>
-      <div class="scene-grid">
-        <div class="scene-copy">
-          <span class="scene-no" aria-hidden="true">03</span>
-          <div class="kicker mono">03 <span>INSURTECH · COLOMBIA</span></div>
-          <h2 data-en="A conversation with an <em>exit.</em>" data-es="Una conversación con una <em>salida.</em>">A conversation with an <em>exit.</em></h2>
-          <p class="body" data-en="Asegura guides people from “I don’t know what I need” to a reasoned insurance recommendation by voice or text. When certainty runs out, a human takes over. A policy activates only after payment is confirmed." data-es="Asegura lleva a una persona de “no sé qué necesito” a una recomendación de seguros razonada, por voz o texto. Cuando se acaba la certeza, entra un humano. La póliza se activa solo después de confirmar el pago.">Asegura guides people from “I don’t know what I need” to a reasoned insurance recommendation by voice or text. When certainty runs out, a human takes over. A policy activates only after payment is confirmed.</p>
-          <a class="project-link" href="https://asegura-app.vercel.app" target="_blank" rel="noopener">Explore Asegura</a>
-        </div>
-        <figure class="cinema">
-          <div class="cinema-screen"><div class="hud" aria-hidden="true"></div><span class="status mono" data-en="HUMAN READY" data-es="HUMANO DISPONIBLE">HUMAN READY</span><video src="assets/asegura-flow.mp4" poster="assets/asegura-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Asegura conversational insurance flow"></video></div>
-          <figcaption class="mono"><span data-en="QUESTION → REASON → HANDOFF" data-es="PREGUNTA → RAZÓN → ESCALA">QUESTION → REASON → HANDOFF</span><span>00:02:16</span></figcaption>
-        </figure>
-      </div>
-      <div class="progress" aria-hidden="true"><span style="width:100%"></span></div>
+  <section class="principles" id="principles" data-section="principles">
+    <div class="orbit" aria-hidden="true">
+      <div class="orbit-rings"><span></span><span></span><span></span></div>
+      <div class="orbit-core" data-en="Limits first." data-es="Límites primero.">Limits first.</div>
+      <span class="orbit-label orbit-a mono" data-en="No keys held" data-es="Sin llaves">No keys held</span>
+      <span class="orbit-label orbit-b mono" data-en="Human handoff" data-es="Relevo humano">Human handoff</span>
+      <span class="orbit-label orbit-c mono" data-en="Nothing invented" data-es="Nada inventado">Nothing invented</span>
+      <span class="orbit-label orbit-d mono" data-en="Zero PII on-chain" data-es="Cero datos personales">Zero PII on-chain</span>
+    </div>
+    <div class="principles-copy">
+      <div class="section-index mono" data-en="03 / HOW I BUILD" data-es="03 / CÓMO CONSTRUYO">03 / HOW I BUILD</div>
+      <h2 data-en="Say what it does. <em>Then prove it.</em>" data-es="Decir lo que hace. <em>Y probarlo.</em>">Say what it does. <em>Then prove it.</em></h2>
+      <p data-en="I write down what a product does not do yet, right next to what it does. A claim points to evidence — a transaction, a test, a recording — or it stays off the page." data-es="Escribo lo que un producto todavía no hace, justo al lado de lo que sí hace. Una afirmación apunta a evidencia —una transacción, una prueba, una grabación— o se queda fuera de la página.">I write down what a product does not do yet, right next to what it does. A claim points to evidence — a transaction, a test, a recording — or it stays off the page.</p>
+      <ul class="rules">
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span><strong data-en="Money waits for a signature." data-es="El dinero espera una firma.">Money waits for a signature.</strong><span data-en="The agent prepares; the person decides." data-es="El agente prepara; la persona decide.">The agent prepares; the person decides.</span></span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span><strong data-en="Evidence over inference." data-es="Evidencia antes que inferencia.">Evidence over inference.</strong><span data-en="If a source is missing, the system says so." data-es="Si falta una fuente, el sistema lo dice.">If a source is missing, the system says so.</span></span></li>
+        <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10 4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span><strong data-en="Privacy by subtraction." data-es="Privacidad por resta.">Privacy by subtraction.</strong><span data-en="Publish the outcome; keep the person off the record." data-es="Publica el resultado; deja a la persona fuera del registro.">Publish the outcome; keep the person off the record.</span></span></li>
+      </ul>
     </div>
   </section>
 
   <section class="archive" id="archive" data-section="archive">
     <div class="archive-head">
-      <div><div class="eyebrow mono" data-en="SELECTED EXPERIMENTS" data-es="EXPERIMENTOS SELECCIONADOS">SELECTED EXPERIMENTS</div><h2 data-en="Built under pressure." data-es="Construidos bajo presión.">Built under pressure.</h2></div>
+      <div><div class="section-index mono" data-en="04 / SELECTED EXPERIMENTS" data-es="04 / EXPERIMENTOS SELECCIONADOS">04 / SELECTED EXPERIMENTS</div><h2 data-en="Built under pressure." data-es="Construidos bajo presión.">Built under pressure.</h2></div>
       <p class="archive-intro" data-en="Hackathons are useful because the deadline is real. Each build below compresses one hard product decision into something people can use." data-es="Los hackatones sirven porque la fecha límite es real. Cada proyecto de abajo comprime una decisión difícil de producto en algo que la gente puede usar.">Hackathons are useful because the deadline is real. Each build below compresses one hard product decision into something people can use.</p>
     </div>
     <ol class="project-list">
-      <li><a href="https://cerrojo-app.vercel.app/" target="_blank" rel="noopener"><span class="num mono">04</span><span class="name">Cerrojo</span><span class="claim" data-en="AI proposes. The wallet decides." data-es="La IA propone. La billetera decide.">AI proposes. The wallet decides.</span><span class="arrow">↗</span></a></li>
-      <li><div class="row"><span class="num mono">05</span><span class="name">Quick Analytical Agent</span><span class="claim" data-en="Abstains when the data is thin." data-es="Se abstiene cuando faltan datos.">Abstains when the data is thin.</span><span class="arrow">—</span></div></li>
-      <li><div class="row"><span class="num mono">06</span><span class="name">R5 Cuadre</span><span class="claim" data-en="Explains every difference." data-es="Explica cada diferencia.">Explains every difference.</span><span class="arrow">—</span></div></li>
-      <li><div class="row"><span class="num mono">07</span><span class="name">Cockpit INVIMA</span><span class="claim" data-en="Quotes the exact folio." data-es="Cita el folio exacto.">Quotes the exact folio.</span><span class="arrow">—</span></div></li>
-      <li><a href="https://github.com/realtime-hackaton-2026/incloudy" target="_blank" rel="noopener"><span class="num mono">08</span><span class="name">incloudy</span><span class="claim" data-en="One case, many specialists." data-es="Un caso, muchos especialistas.">One case, many specialists.</span><span class="arrow">↗</span></a></li>
-      <li><div class="row"><span class="num mono">09</span><span class="name">Panini Exchange</span><span class="claim" data-en="No account. No cloud." data-es="Sin cuenta. Sin nube.">No account. No cloud.</span><span class="arrow">—</span></div></li>
+      <li><div class="row"><span class="num mono">06</span><span class="name">Cerrojo</span><span class="claim" data-en="AI proposes. The wallet decides." data-es="La IA propone. La billetera decide.">AI proposes. The wallet decides.</span><span class="arrow">—</span></div></li>
+      <li><div class="row"><span class="num mono">07</span><span class="name">Quick Analytical Agent</span><span class="claim" data-en="Abstains when the data is thin." data-es="Se abstiene cuando faltan datos.">Abstains when the data is thin.</span><span class="arrow">—</span></div></li>
+      <li><div class="row"><span class="num mono">08</span><span class="name">R5 Cuadre</span><span class="claim" data-en="Explains every difference." data-es="Explica cada diferencia.">Explains every difference.</span><span class="arrow">—</span></div></li>
+      <li><div class="row"><span class="num mono">09</span><span class="name">Cockpit INVIMA</span><span class="claim" data-en="Quotes the exact folio." data-es="Cita el folio exacto.">Quotes the exact folio.</span><span class="arrow">—</span></div></li>
+      <li><a href="https://github.com/realtime-hackaton-2026/incloudy" target="_blank" rel="noopener"><span class="num mono">10</span><span class="name">incloudy</span><span class="claim" data-en="One case, many specialists." data-es="Un caso, muchos especialistas.">One case, many specialists.</span><span class="arrow">↗</span></a></li>
+      <li><div class="row"><span class="num mono">11</span><span class="name">Panini Exchange</span><span class="claim" data-en="No account. No cloud." data-es="Sin cuenta. Sin nube.">No account. No cloud.</span><span class="arrow">—</span></div></li>
     </ol>
   </section>
 
   <section class="contact" id="contact" data-section="contact">
     <div>
-      <div class="prompt mono" data-en="END FRAME / START A CONVERSATION" data-es="FIN DEL CUADRO / EMPIEZA UNA CONVERSACIÓN">END FRAME / START A CONVERSATION</div>
+      <div class="prompt mono" data-en="05 / END FRAME · START A CONVERSATION" data-es="05 / FIN DEL CUADRO · EMPIEZA UNA CONVERSACIÓN">05 / END FRAME · START A CONVERSATION</div>
       <h2 data-en="Bring me the problem that must be right." data-es="Tráeme el problema que tiene que salir bien.">Bring me the problem that must be right.</h2>
       <div class="contact-links">
         <a href="mailto:luisalejandrocardenasr@gmail.com">EMAIL ↗</a>
         <a href="https://github.com/LuisAlejandroCR" target="_blank" rel="noopener">GITHUB ↗</a>
       </div>
     </div>
-    <footer class="footer mono"><span>LUIS ALEJANDRO CÁRDENAS · 2026</span><span data-en="BUILT IN BOGOTÁ · NO TRACKING" data-es="HECHO EN BOGOTÁ · SIN RASTREO">BUILT IN BOGOTÁ · NO TRACKING</span></footer>
+    <footer class="footer mono"><span>LUIS CÁRDENAS · 2026</span><span data-en="BUILT IN BOGOTÁ · NO TRACKING" data-es="HECHO EN BOGOTÁ · SIN RASTREO">BUILT IN BOGOTÁ · NO TRACKING</span></footer>
   </section>
 </main>
 
 <script>
 (function(){
   var root=document.documentElement;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var noop=function(){};
+  var lang='en';
+
+  // theme
   var themeToggle=document.getElementById('themeToggle');
   var themeLabel=document.getElementById('themeLabel');
   var themeMeta=document.querySelector('meta[name="theme-color"]');
-  var languageButtons=[].slice.call(document.querySelectorAll('[data-lang]'));
-  var translated=[].slice.call(document.querySelectorAll('[data-en][data-es]'));
   function setTheme(theme){
     var dark=theme==='dark';
     if(dark){root.setAttribute('data-theme','dark');}else{root.removeAttribute('data-theme');}
@@ -371,40 +563,99 @@ h1 em{font-weight:400;color:var(--green)}
   var savedTheme='';try{savedTheme=localStorage.getItem('portfolio-theme')||'';}catch(error){}
   setTheme(savedTheme==='dark'?'dark':'warm');
   themeToggle.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'warm':'dark');});
-  function setLanguage(lang){
-    root.lang=lang;
-    translated.forEach(function(node){node.innerHTML=node.getAttribute('data-'+lang);});
-    languageButtons.forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.lang===lang));});
-    try{localStorage.setItem('portfolio-language',lang);}catch(error){}
+
+  // hero reel: real recordings, one after another
+  var reel=document.getElementById('heroReel');
+  var reelIndex=document.getElementById('reelIndex');
+  var reelName=document.getElementById('reelName');
+  var reelTag=document.getElementById('reelTag');
+  var reelBar=document.getElementById('reelBar');
+  var reelItems=[
+    {src:'assets/choco-flow.mp4',poster:'assets/choco-flow-poster.webp',name:'CHOCO',en:'VOICE → SIGNATURE',es:'VOZ → FIRMA'},
+    {src:'assets/creva-card.mp4',poster:'assets/creva-card-poster.webp',name:'CREVA',en:'SOURCE → SCORE',es:'FUENTE → SCORE'},
+    {src:'assets/asegura-flow.mp4',poster:'assets/asegura-flow-poster.webp',name:'ASEGURA',en:'QUESTION → HANDOFF',es:'PREGUNTA → ESCALA'}
+  ];
+  var reelAt=0,reelVisible=false;
+  function labelReel(){
+    var item=reelItems[reelAt];
+    reelIndex.textContent='ARTIFACT 00'+(reelAt+1);
+    reelName.textContent=item.name;
+    reelTag.textContent=item[lang];
+  }
+  function showReel(i){
+    reelAt=i;
+    reel.classList.add('is-swapping');
+    setTimeout(function(){
+      reel.poster=reelItems[i].poster;reel.src=reelItems[i].src;labelReel();
+      reel.classList.remove('is-swapping');
+      if(reelVisible&&!reduced)reel.play().catch(noop);
+    },320);
+  }
+  reel.addEventListener('ended',function(){showReel((reelAt+1)%reelItems.length);});
+  reel.addEventListener('timeupdate',function(){if(reel.duration)reelBar.style.transform='scaleX('+(reel.currentTime/reel.duration)+')';});
+
+  // language
+  var languageButtons=[].slice.call(document.querySelectorAll('[data-lang]'));
+  var translated=[].slice.call(document.querySelectorAll('[data-en][data-es]'));
+  function setLanguage(next){
+    lang=next;root.lang=next;
+    translated.forEach(function(node){node.innerHTML=node.getAttribute('data-'+next);});
+    languageButtons.forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.lang===next));});
+    labelReel();
+    try{localStorage.setItem('portfolio-language',next);}catch(error){}
   }
   var saved='';try{saved=localStorage.getItem('portfolio-language')||'';}catch(error){}
   setLanguage(saved==='es'||saved==='en'?saved:((navigator.language||'en').toLowerCase().indexOf('es')===0?'es':'en'));
   languageButtons.forEach(function(button){button.addEventListener('click',function(){setLanguage(button.dataset.lang);});});
 
-  var videos=[].slice.call(document.querySelectorAll('video'));
-  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if('IntersectionObserver' in window){
-    var videoObserver=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting&&!reduced){entry.target.play().catch(function(){});}else{entry.target.pause();}
-      });
-    },{threshold:.35});
-    videos.forEach(function(video){videoObserver.observe(video);});
+  if(!('IntersectionObserver' in window))return;
 
-    var sections=[].slice.call(document.querySelectorAll('[data-section]'));
-    var dots=[].slice.call(document.querySelectorAll('[data-dot]'));
-    var frame=document.getElementById('frameIndex');
-    var sectionObserver=new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(!entry.isIntersecting)return;
-        var key=entry.target.dataset.section;
-        dots.forEach(function(dot){dot.classList.toggle('active',dot.dataset.dot===key);});
-        var order={top:'000',choco:'001',creva:'002',asegura:'003',archive:'004',contact:'007'};
-        if(frame&&order[key])frame.textContent=order[key];
-      });
-    },{rootMargin:'-42% 0px -42% 0px',threshold:0});
-    sections.forEach(function(section){sectionObserver.observe(section);});
-  }
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      reelVisible=entry.isIntersecting;
+      if(reelVisible&&!reduced){reel.play().catch(noop);}else{reel.pause();}
+    });
+  },{threshold:.35}).observe(reel);
+
+  // films play once pinned in view, then pause and rewind when their track leaves
+  var player=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var video=entry.target.querySelector('video');
+      if(!video)return;
+      if(entry.isIntersecting&&!reduced){if(video.paused&&!video.ended)video.play().catch(noop);}
+      else{video.pause();}
+    });
+  },{threshold:.55});
+  var rewinder=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting)return;
+      var video=entry.target.querySelector('video');
+      if(video){video.pause();try{video.currentTime=0;}catch(error){}}
+    });
+  });
+  [].slice.call(document.querySelectorAll('.film')).forEach(function(film){player.observe(film);});
+  [].slice.call(document.querySelectorAll('.film-track')).forEach(function(track){rewinder.observe(track);});
+
+  // the top bar turns dark while the film section sits under it
+  var work=document.getElementById('work'),barTick=false;
+  function barCheck(){barTick=false;var r=work.getBoundingClientRect();document.body.classList.toggle('on-film',r.top<=38&&r.bottom>38);}
+  window.addEventListener('scroll',function(){if(!barTick){barTick=true;requestAnimationFrame(barCheck);}},{passive:true});
+  barCheck();
+
+  // side dots and frame counter
+  var dots=[].slice.call(document.querySelectorAll('[data-dot]'));
+  var frame=document.getElementById('frameIndex');
+  var order={top:'000',prufture:'001',knowni:'002',choco:'003',creva:'004',asegura:'005',principles:'006',archive:'007',contact:'008'};
+  var sectionObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting)return;
+      var key=entry.target.dataset.section;
+      dots.forEach(function(dot){dot.classList.toggle('active',dot.dataset.dot===key);});
+      document.body.classList.toggle('on-contact',key==='contact');
+      if(frame&&order[key])frame.textContent=order[key];
+    });
+  },{rootMargin:'-42% 0px -42% 0px',threshold:0});
+  [].slice.call(document.querySelectorAll('[data-section]')).forEach(function(section){sectionObserver.observe(section);});
 })();
 </script>
 </body>

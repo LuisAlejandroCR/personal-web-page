@@ -7,3 +7,5 @@ _exploration/
 # Aprendizajes crudos: pueden nombrar cliente y cifras. Nunca a un repo publico.
 LEARNINGS.md
 
+# Briefs locales: spec del rediseno y guiones para ElevenLabs. No se publican en Pages.
+briefs/
