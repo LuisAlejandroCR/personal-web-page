@@ -147,7 +147,7 @@ html[data-theme="dark"] .theme-toggle .icon-sun{opacity:1;transform:none}
 
 /* opening: the hero card */
 .hero{position:relative;padding:12px}
-.hero-card{position:relative;overflow:hidden;border-radius:48px;padding:0 0 44px;background:linear-gradient(180deg,var(--paper) 0%,var(--night-2) 100%);isolation:isolate}
+.hero-card{position:relative;overflow:hidden;overflow:clip;border-radius:48px;padding:0 0 44px;background:linear-gradient(180deg,var(--paper) 0%,var(--night-2) 100%);isolation:isolate}
 .hero-glow{position:absolute;z-index:-1;width:60vw;height:60vw;right:-22vw;top:-24vw;border-radius:50%;background:var(--green-2);filter:blur(140px);opacity:.2}
 .hero-copy{padding:clamp(150px,22vh,230px) 1.5rem 0;text-align:center;display:grid;justify-items:center}
 .eyebrow{color:var(--green)}
@@ -316,8 +316,10 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
 .credit{margin-top:3rem;font-size:1.1rem;line-height:1.35;letter-spacing:-.02em;color:var(--mist)}
 
 @supports (animation-timeline:view()){
-  @media (prefers-reduced-motion:no-preference) and (min-width:761px){
+  @media (prefers-reduced-motion:no-preference){
     .hero-copy{animation:heroFade linear both;animation-timeline:view();animation-range:exit 0% exit 70%}
+  }
+  @media (prefers-reduced-motion:no-preference) and (min-width:761px){
     .screen{animation:screenLeave linear both;animation-timeline:view();animation-range:exit 20% exit 100%}
     .statement{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
     .seal{animation:sealIn linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
