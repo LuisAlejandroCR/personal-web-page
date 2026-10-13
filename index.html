@@ -12,7 +12,7 @@
 <meta name="description" content="AI agents, privacy and financial products for Latin America, built with explicit limits, human judgment and verifiable outcomes.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Luis Cárdenas — Systems that know when to stop">
-<meta property="og:description" content="Prufture, Knowni, Choco, Creva and Asegura: products built around one hard limit each.">
+<meta property="og:description" content="Audiorapy, realrent4u, Blackbox Lab, Prufture, Knowni, Choco, Creva and Asegura: products built around one hard limit each.">
 <meta property="og:url" content="https://luisalejandrocr.github.io/personal-web-page/">
 <meta property="og:image" content="https://luisalejandrocr.github.io/personal-web-page/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -164,6 +164,8 @@ h1 em{color:var(--green)}
 .screen-frame video{display:block;width:100%;height:100%;object-fit:cover;background:#030805}
 .screen[data-mode="screen"] .screen-frame{inset:auto;left:50%;top:54%;height:80%;aspect-ratio:9/19.5;transform:translate(-50%,-50%) rotate(-1.5deg);padding:7px;border-radius:32px;background:#0a0e0b;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 80px rgba(158,230,164,.08)}
 .screen[data-mode="screen"] .screen-frame video{border-radius:25px;object-position:top}
+.screen[data-mode="browser"] .screen-frame{inset:auto;left:50%;top:50%;width:68%;transform:translate(-50%,-50%) rotate(-1deg);padding:26px 7px 7px;border-radius:18px;background:#0a0e0b;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 80px rgba(158,230,164,.08)}
+.screen[data-mode="browser"] .screen-frame video{height:auto;aspect-ratio:16/9;border-radius:11px}
 .screen.is-swapping .screen-frame,.screen.is-swapping .screen-backdrop{opacity:0}
 .screen-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,10,6,.35) 0%,rgba(4,10,6,0) 22%,rgba(4,10,6,0) 62%,rgba(4,10,6,.78) 100%)}
 .screen-caption{position:absolute;left:clamp(20px,3.4vw,44px);right:clamp(20px,3.4vw,44px);bottom:clamp(20px,3vw,36px);display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:end;color:var(--film-ink)}
@@ -235,6 +237,10 @@ h1 em{color:var(--green)}
 .film-device video{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:28px;background:#030805}
 .film--flip .film-device{right:auto;left:clamp(24px,9vw,150px);transform:translateY(-50%) rotate(-2deg)}
 .film--flip .film-copy{left:auto;right:clamp(22px,4.5vw,64px)}
+/* browser mode: a desktop recording in a window frame */
+.film-device.film-device--browser{height:auto;aspect-ratio:auto;width:min(42%,620px);right:clamp(24px,5vw,90px);top:50%;transform:translateY(-50%) rotate(1deg);padding:26px 6px 6px;border-radius:16px}
+.film-device--browser::before,.screen[data-mode="browser"] .screen-frame::before{content:"";position:absolute;top:10px;left:13px;width:6px;height:6px;border-radius:50%;background:rgba(238,244,232,.28);box-shadow:11px 0 0 rgba(238,244,232,.28),22px 0 0 rgba(238,244,232,.28)}
+.film-device--browser video{height:auto;aspect-ratio:16/9;object-position:center;border-radius:10px}
 .reel-note{padding:3vh 9vw 0;color:var(--film-mist)}
 
 /* 03 · principles: the vault */
@@ -351,6 +357,8 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   .screen{aspect-ratio:4/5;min-height:0;border-radius:28px}
   .screen[data-mode="screen"] .screen-frame{height:74%;border-radius:26px;padding:6px}
   .screen[data-mode="screen"] .screen-frame video{border-radius:21px}
+  .screen[data-mode="browser"] .screen-frame{width:92%;padding:22px 5px 5px;border-radius:14px}
+  .screen[data-mode="browser"] .screen-frame::before{top:8px;left:11px}
   .screen-caption{grid-template-columns:1fr auto;gap:.5rem 1rem}.screen-caption #reelIndex{grid-column:1/-1}
   .ask{padding-left:1.2rem}.ask input{font-size:1rem;height:44px}.ask button{width:46px;height:46px}
   .ask--hero{min-height:68px;margin-bottom:-36px;padding-left:1.3rem}.ask--hero input{font-size:1rem}
@@ -375,6 +383,9 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   .film-links{margin-top:1.1rem}.film-links a{flex:1 1 auto;justify-content:center}
   .film-device,.film--flip .film-device{top:4.4rem;left:50%;right:auto;transform:translateX(-50%);height:36%;border-radius:26px;padding:6px}
   .film-device video{border-radius:21px}
+  .film-device.film-device--browser{top:4.4rem;left:50%;right:auto;width:76%;transform:translateX(-50%);padding:22px 5px 5px;border-radius:14px}
+  .film-device--browser::before{top:8px;left:11px}
+  .film-device--browser video{border-radius:9px}
   .film--cinema .film-shade{background:linear-gradient(180deg,rgba(4,10,6,.5) 0%,rgba(4,10,6,.12) 22%,rgba(4,10,6,.82) 48%,rgba(4,10,6,.96) 100%)}
   .film--screen .film-shade,.film--flip .film-shade{background:linear-gradient(180deg,rgba(4,10,6,.25) 0%,rgba(4,10,6,.55) 38%,rgba(4,10,6,.96) 62%)}
   .archive{padding:12vh 1.5rem 14vh}
@@ -382,6 +393,9 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   .contact{padding:0 8px 8px}.contact-card{border-radius:32px;padding:14vh 1.5rem 12vh}
   .contact-links{display:grid}
   .site-foot{padding-top:12vh}
+}
+@media (max-width:760px) and (max-height:760px){
+  .film-device.film-device--browser{z-index:-1;width:66%}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -397,7 +411,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
 
 <header class="topbar">
   <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Luis Cárdenas</a>
-  <span class="index mono" aria-live="polite">FRAME <b id="frameIndex">000</b> / 008</span>
+  <span class="index mono" aria-live="polite">FRAME <b id="frameIndex">000</b> / 011</span>
   <div class="controls">
     <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Use dark theme" title="Use dark theme">
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
@@ -423,6 +437,9 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
 
 <nav class="side-nav" aria-label="Sections">
   <a href="#top" class="active" data-dot="top"><span>Intro</span></a>
+  <a href="#audiorapy" data-dot="audiorapy"><span>Audiorapy</span></a>
+  <a href="#realrent4u" data-dot="realrent4u"><span>realrent4u</span></a>
+  <a href="#blackbox" data-dot="blackbox"><span>Blackbox Lab</span></a>
   <a href="#prufture" data-dot="prufture"><span>Prufture</span></a>
   <a href="#knowni" data-dot="knowni"><span>Knowni</span></a>
   <a href="#choco" data-dot="choco"><span>Choco</span></a>
@@ -445,11 +462,11 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
       </div>
       <div class="stage">
         <form class="ask ask--hero" data-ask action="mailto:luisalejandrocardenasr@gmail.com" method="get"><label class="sr-only" for="askHero" data-en="Describe your problem — it opens an email to Luis" data-es="Describe tu problema: se abre un correo para Luis">Describe your problem — it opens an email to Luis</label><input id="askHero" type="text" autocomplete="off" placeholder="What must go right?" data-ph-en="What must go right?" data-ph-es="¿Qué tiene que salir bien?"><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button></form>
-        <figure class="screen" id="heroScreen" data-mode="cinema" aria-label="Product reel: real recordings of five builds">
+        <figure class="screen" id="heroScreen" data-mode="cinema" aria-label="Product reel: real recordings of eight builds">
           <div class="screen-backdrop" id="screenBackdrop" aria-hidden="true"></div>
-          <div class="screen-frame"><video id="heroReel" src="assets/knowni-film.mp4" poster="assets/knowni-film.webp" muted playsinline preload="metadata" aria-label="Recorded product flow"></video></div>
+          <div class="screen-frame"><video id="heroReel" src="assets/audiorapy-film.mp4" poster="assets/audiorapy-film.webp" muted playsinline preload="metadata" aria-label="Recorded product flow"></video></div>
           <div class="screen-shade" aria-hidden="true"></div>
-          <figcaption class="screen-caption mono"><span id="reelIndex">01 / 05</span><b id="reelName">Knowni</b><span id="reelTag">REQUEST → CONSENT → ANSWER</span></figcaption>
+          <figcaption class="screen-caption mono"><span id="reelIndex">01 / 08</span><b id="reelName">Audiorapy</b><span id="reelTag">BOOK → SESSION → NOTE</span></figcaption>
           <div class="reel-progress" aria-hidden="true"><span id="reelBar"></span></div>
         </figure>
       </div>
@@ -469,8 +486,8 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
       <p data-en="I design those limits first, then build the product around them — so people can trust it on the day it matters." data-es="Diseño esos límites primero y después construyo el producto a su alrededor, para que la gente pueda confiar en él el día que importa.">I design those limits first, then build the product around them — so people can trust it on the day it matters.</p>
     </div>
     <div class="impact">
-      <article><strong>5</strong><span data-en="products you can open today, each built around one hard limit" data-es="productos que puedes abrir hoy, cada uno construido alrededor de un límite">products you can open today, each built around one hard limit</span></article>
-      <article><strong>11</strong><span data-en="products and prototypes shipped on this page" data-es="productos y prototipos entregados en esta página">products and prototypes shipped on this page</span></article>
+      <article><strong>8</strong><span data-en="products you can open today, each built around one hard limit" data-es="productos que puedes abrir hoy, cada uno construido alrededor de un límite">products you can open today, each built around one hard limit</span></article>
+      <article><strong>14</strong><span data-en="products and prototypes shipped on this page" data-es="productos y prototipos entregados en esta página">products and prototypes shipped on this page</span></article>
       <article><strong>3</strong><span data-en="chains shipped on — Celo, Base and Stellar" data-es="cadenas donde he entregado — Celo, Base y Stellar">chains shipped on — Celo, Base and Stellar</span></article>
     </div>
   </section>
@@ -479,17 +496,60 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
     <div class="work-head">
       <div>
         <div class="section-index mono" data-en="02 / THE WORK" data-es="02 / EL TRABAJO">02 / THE WORK</div>
-        <h2 id="workTitle" data-en="Five products. <em>One limit each.</em>" data-es="Cinco productos. <em>Un límite cada uno.</em>">Five products. <em>One limit each.</em></h2>
+        <h2 id="workTitle" data-en="Eight products. <em>One limit each.</em>" data-es="Ocho productos. <em>Un límite cada uno.</em>">Eight products. <em>One limit each.</em></h2>
       </div>
       <p data-en="Each film plays as you reach it. The limit is the product decision everything else was built around." data-es="Cada película se reproduce al llegar a ella. El límite es la decisión de producto alrededor de la cual se construyó todo lo demás.">Each film plays as you reach it. The limit is the product decision everything else was built around.</p>
     </div>
 
     <div class="reel">
+      <div class="film-track" id="audiorapy" data-section="audiorapy">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/audiorapy-film.mp4" poster="assets/audiorapy-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>01</b><span data-en="SPEECH THERAPY · HOME VISITS" data-es="FONOAUDIOLOGÍA · A DOMICILIO">SPEECH THERAPY · HOME VISITS</span></span><span class="film-stamp" data-en="BOOK → SESSION → NOTE" data-es="AGENDA → SESIÓN → NOTA">BOOK → SESSION → NOTE</span></div>
+          <div class="film-copy">
+            <h3 data-en="The visit is shared. <em>The notes are not.</em>" data-es="La visita se comparte. <em>Las notas no.</em>">The visit is shared. <em>The notes are not.</em></h3>
+            <div class="film-limit mono" data-en="Clinical notes never reach the server" data-es="Las notas clínicas nunca llegan al servidor">Clinical notes never reach the server</div>
+            <p data-en="Audiorapy runs a home-visit speech therapist’s day: families book over WhatsApp with buttons, she logs each trial with its cue level, and an open model drafts the note — it stays a draft until she approves it. Notes are encrypted in her browser; the server sees times and statuses, nothing clinical." data-es="Audiorapy organiza el día de una fonoaudióloga a domicilio: las familias agendan por WhatsApp con botones, ella registra cada ensayo con su nivel de apoyo y un modelo abierto redacta la nota, que sigue siendo borrador hasta que ella la aprueba. Las notas se cifran en su navegador; el servidor ve horas y estados, nada clínico.">Audiorapy runs a home-visit speech therapist’s day: families book over WhatsApp with buttons, she logs each trial with its cue level, and an open model drafts the note — it stays a draft until she approves it. Notes are encrypted in her browser; the server sees times and statuses, nothing clinical.</p>
+            <div class="film-links"><a href="https://audiorapy.vercel.app" target="_blank" rel="noopener" data-en="Explore Audiorapy ↗" data-es="Explorar Audiorapy ↗">Explore Audiorapy ↗</a><a href="https://github.com/LuisAlejandroCR/audiorapy" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="realrent4u" data-section="realrent4u">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/realrent4u-film.mp4" poster="assets/realrent4u-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>02</b><span data-en="RENTAL LAW · UNITED STATES" data-es="LEYES DE ARRIENDO · EE. UU.">RENTAL LAW · UNITED STATES</span></span><span class="film-stamp" data-en="ADDRESS → RULE → SOURCE" data-es="DIRECCIÓN → REGLA → FUENTE">ADDRESS → RULE → SOURCE</span></div>
+          <div class="film-copy">
+            <h3 data-en="Every answer quotes <em>its source.</em>" data-es="Cada respuesta cita <em>su fuente.</em>">Every answer quotes <em>its source.</em></h3>
+            <div class="film-limit mono" data-en="The model extracts. It never decides." data-es="El modelo extrae. Nunca decide.">The model extracts. It never decides.</div>
+            <p data-en="Type a U.S. address and a date. realrent4u places the building in its legal city — not its postal one — and answers with one of five labelled results, the exact quoted sentence and its source. When a fact is missing, the answer is unknown, never a guess." data-es="Escribe una dirección de EE. UU. y una fecha. realrent4u ubica el edificio en su ciudad legal —no en la postal— y responde con uno de cinco resultados etiquetados, la frase exacta citada y su fuente. Si falta un dato, la respuesta es desconocido, nunca una suposición.">Type a U.S. address and a date. realrent4u places the building in its legal city — not its postal one — and answers with one of five labelled results, the exact quoted sentence and its source. When a fact is missing, the answer is unknown, never a guess.</p>
+            <div class="film-links"><a href="https://realrent4u.vercel.app" target="_blank" rel="noopener" data-en="Explore realrent4u ↗" data-es="Explorar realrent4u ↗">Explore realrent4u ↗</a><a href="https://github.com/LuisAlejandroCR/realrent4u/blob/main/docs/METHOD.md" target="_blank" rel="noopener" data-en="Read the method ↗" data-es="Leer el método ↗">Read the method ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="blackbox" data-section="blackbox">
+        <article class="film film--screen">
+          <div class="film-backdrop" style="background-image:url('assets/blackbox-lab.webp')" aria-hidden="true"></div>
+          <div class="film-device film-device--browser"><video src="assets/blackbox-lab.mp4" poster="assets/blackbox-lab.webp" muted loop playsinline preload="metadata" aria-label="Blackbox Lab console, recorded: a run of sequence c-1354 and the difference at step 34"></video></div>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>03</b><span data-en="LEGACY BANKING · PARITY" data-es="BANCA HEREDADA · PARIDAD">LEGACY BANKING · PARITY</span></span><span class="film-stamp" data-en="OBSERVE → COMPARE → UNDERSTAND" data-es="OBSERVAR → COMPARAR → ENTENDER">OBSERVE → COMPARE → UNDERSTAND</span></div>
+          <div class="film-copy">
+            <h3 data-en="Replace the black box. <em>Errors included.</em>" data-es="Reemplaza la caja negra. <em>Errores incluidos.</em>">Replace the black box. <em>Errors included.</em></h3>
+            <div class="film-limit mono" data-en="No evidence, no rule" data-es="Sin evidencia, no hay regla">No evidence, no rule</div>
+            <p data-en="A ten-year-old banking service with no code and no docs had to be replaced by one that answers exactly the same. Blackbox Lab replays every recorded question against the replica and puts each difference next to the experiment that explains it." data-es="Un servicio bancario de diez años, sin código ni documentación, tenía que reemplazarse por uno que respondiera exactamente igual. Blackbox Lab repite cada pregunta grabada contra la réplica y pone cada diferencia junto al experimento que la explica.">A ten-year-old banking service with no code and no docs had to be replaced by one that answers exactly the same. Blackbox Lab replays every recorded question against the replica and puts each difference next to the experiment that explains it.</p>
+            <div class="film-links"><a href="https://blackboxlab.vercel.app" target="_blank" rel="noopener" data-en="Explore Blackbox Lab ↗" data-es="Explorar Blackbox Lab ↗">Explore Blackbox Lab ↗</a><a href="https://github.com/LuisAlejandroCR/agent-black" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
+          </div>
+        </article>
+      </div>
+
       <div class="film-track" id="prufture" data-section="prufture">
         <article class="film film--cinema">
           <video class="film-video" src="assets/prufture-film.mp4" poster="assets/prufture-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>01</b><span data-en="FIELD REPORTING · OFFLINE FIRST" data-es="REPORTE DE CAMPO · SIN CONEXIÓN">FIELD REPORTING · OFFLINE FIRST</span></span><span class="film-stamp">CAPTURE → SIGN → SYNC</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>04</b><span data-en="FIELD REPORTING · OFFLINE FIRST" data-es="REPORTE DE CAMPO · SIN CONEXIÓN">FIELD REPORTING · OFFLINE FIRST</span></span><span class="film-stamp">CAPTURE → SIGN → SYNC</span></div>
           <div class="film-copy">
             <h3 data-en="Proof from the field. <em>Not the person.</em>" data-es="La prueba del campo. <em>No la persona.</em>">Proof from the field. <em>Not the person.</em></h3>
             <div class="film-limit mono" data-en="Zero personal data on-chain" data-es="Cero datos personales en cadena">Zero personal data on-chain</div>
@@ -503,7 +563,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
         <article class="film film--cinema">
           <video class="film-video" src="assets/knowni-film.mp4" poster="assets/knowni-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>02</b><span data-en="PRIVACY · STELLAR" data-es="PRIVACIDAD · STELLAR">PRIVACY · STELLAR</span></span><span class="film-stamp">REQUEST → CONSENT → ANSWER</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>05</b><span data-en="PRIVACY · STELLAR" data-es="PRIVACIDAD · STELLAR">PRIVACY · STELLAR</span></span><span class="film-stamp">REQUEST → CONSENT → ANSWER</span></div>
           <div class="film-copy">
             <h3 data-en="Prove you qualify. <em>Not who you are.</em>" data-es="Demuestra que calificas. <em>No quién eres.</em>">Prove you qualify. <em>Not who you are.</em></h3>
             <div class="film-limit mono" data-en="Answers, never documents" data-es="Respuestas, nunca documentos">Answers, never documents</div>
@@ -518,7 +578,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
           <div class="film-backdrop" style="background-image:url('assets/choco-flow-poster.webp')" aria-hidden="true"></div>
           <div class="film-device"><video src="assets/choco-flow.mp4" poster="assets/choco-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Choco transfer flow, recorded"></video></div>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>03</b><span>CELO · MINIPAY</span></span><span class="film-stamp" data-en="VOICE → INTENT → SIGNATURE" data-es="VOZ → INTENCIÓN → FIRMA">VOICE → INTENT → SIGNATURE</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>06</b><span>CELO · MINIPAY</span></span><span class="film-stamp" data-en="VOICE → INTENT → SIGNATURE" data-es="VOZ → INTENCIÓN → FIRMA">VOICE → INTENT → SIGNATURE</span></div>
           <div class="film-copy">
             <h3 data-en="Money moves only when <em>you sign.</em>" data-es="El dinero se mueve solo cuando <em>tú firmas.</em>">Money moves only when <em>you sign.</em></h3>
             <div class="film-limit mono" data-en="The agent never holds a key" data-es="El agente nunca custodia una llave">The agent never holds a key</div>
@@ -533,7 +593,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
           <div class="film-backdrop" style="background-image:url('assets/creva-card-poster.webp')" aria-hidden="true"></div>
           <div class="film-device"><video src="assets/creva-card.mp4" poster="assets/creva-card-poster.webp" muted loop playsinline preload="metadata" aria-label="Creva financial platform, recorded"></video></div>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>04</b><span>FINTECH · MÉXICO</span></span><span class="film-stamp" data-en="SOURCE → SIGNAL → SCORE" data-es="FUENTE → SEÑAL → SCORE">SOURCE → SIGNAL → SCORE</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>07</b><span>FINTECH · MÉXICO</span></span><span class="film-stamp" data-en="SOURCE → SIGNAL → SCORE" data-es="FUENTE → SEÑAL → SCORE">SOURCE → SIGNAL → SCORE</span></div>
           <div class="film-copy">
             <h3 data-en="A score that shows its <em>work.</em>" data-es="Un score que muestra <em>cómo piensa.</em>">A score that shows its <em>work.</em></h3>
             <div class="film-limit mono" data-en="Missing evidence stays missing" data-es="La evidencia que falta no se inventa">Missing evidence stays missing</div>
@@ -548,7 +608,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
           <div class="film-backdrop" style="background-image:url('assets/asegura-flow-poster.webp')" aria-hidden="true"></div>
           <div class="film-device"><video src="assets/asegura-flow.mp4" poster="assets/asegura-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Asegura conversational insurance flow, recorded"></video></div>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>05</b><span>INSURTECH · COLOMBIA</span></span><span class="film-stamp" data-en="QUESTION → REASON → HANDOFF" data-es="PREGUNTA → RAZÓN → ESCALA">QUESTION → REASON → HANDOFF</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>08</b><span>INSURTECH · COLOMBIA</span></span><span class="film-stamp" data-en="QUESTION → REASON → HANDOFF" data-es="PREGUNTA → RAZÓN → ESCALA">QUESTION → REASON → HANDOFF</span></div>
           <div class="film-copy">
             <h3 data-en="A conversation with an <em>exit.</em>" data-es="Una conversación con una <em>salida.</em>">A conversation with an <em>exit.</em></h3>
             <div class="film-limit mono" data-en="A human takes over at the edge" data-es="En el límite, entra un humano">A human takes over at the edge</div>
@@ -593,12 +653,12 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
     </div>
     <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><path id="sealArc" d="M34 100a66 66 0 1 1 132 0"/></defs></svg>
     <ol class="seals">
-      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="06 Cerrojo"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Cerrojo</textPath></text><text class="num" x="100" y="115" text-anchor="middle">06</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="AI proposes. The wallet decides." data-es="La IA propone. La billetera decide.">AI proposes. The wallet decides.</span></div></li>
-      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="07 Quick Analytical Agent"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim rim--long"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Quick Analytical Agent</textPath></text><text class="num" x="100" y="115" text-anchor="middle">07</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="Abstains when the data is thin." data-es="Se abstiene cuando faltan datos.">Abstains when the data is thin.</span></div></li>
-      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="08 R5 Cuadre"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">R5 Cuadre</textPath></text><text class="num" x="100" y="115" text-anchor="middle">08</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="Explains every difference." data-es="Explica cada diferencia.">Explains every difference.</span></div></li>
-      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="09 Cockpit INVIMA"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Cockpit INVIMA</textPath></text><text class="num" x="100" y="115" text-anchor="middle">09</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="Quotes the exact folio." data-es="Cita el folio exacto.">Quotes the exact folio.</span></div></li>
-      <li><a class="seal-item" href="https://github.com/realtime-hackaton-2026/incloudy" target="_blank" rel="noopener"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="10 incloudy"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">incloudy</textPath></text><text class="num" x="100" y="115" text-anchor="middle">10</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="One case, many specialists." data-es="Un caso, muchos especialistas.">One case, many specialists.</span></a></li>
-      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="11 Panini Exchange"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Panini Exchange</textPath></text><text class="num" x="100" y="115" text-anchor="middle">11</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="No account. No cloud." data-es="Sin cuenta. Sin nube.">No account. No cloud.</span></div></li>
+      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="09 Cerrojo"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Cerrojo</textPath></text><text class="num" x="100" y="115" text-anchor="middle">09</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="AI proposes. The wallet decides." data-es="La IA propone. La billetera decide.">AI proposes. The wallet decides.</span></div></li>
+      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="10 Quick Analytical Agent"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim rim--long"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Quick Analytical Agent</textPath></text><text class="num" x="100" y="115" text-anchor="middle">10</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="Abstains when the data is thin." data-es="Se abstiene cuando faltan datos.">Abstains when the data is thin.</span></div></li>
+      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="11 R5 Cuadre"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">R5 Cuadre</textPath></text><text class="num" x="100" y="115" text-anchor="middle">11</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="Explains every difference." data-es="Explica cada diferencia.">Explains every difference.</span></div></li>
+      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="12 Cockpit INVIMA"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Cockpit INVIMA</textPath></text><text class="num" x="100" y="115" text-anchor="middle">12</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="Quotes the exact folio." data-es="Cita el folio exacto.">Quotes the exact folio.</span></div></li>
+      <li><a class="seal-item" href="https://github.com/realtime-hackaton-2026/incloudy" target="_blank" rel="noopener"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="13 incloudy"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">incloudy</textPath></text><text class="num" x="100" y="115" text-anchor="middle">13</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="One case, many specialists." data-es="Un caso, muchos especialistas.">One case, many specialists.</span></a></li>
+      <li><div class="seal-item"><svg class="seal" viewBox="0 0 200 200" role="img" aria-label="14 Panini Exchange"><circle class="disc" cx="100" cy="100" r="98"/><circle class="ring" cx="100" cy="100" r="90"/><circle class="ring" cx="100" cy="100" r="50"/><text class="rim"><textPath href="#sealArc" startOffset="50%" text-anchor="middle">Panini Exchange</textPath></text><text class="num" x="100" y="115" text-anchor="middle">14</text><circle class="dot" cx="84" cy="164" r="2.2"/><circle class="dot" cx="100" cy="167" r="2.2"/><circle class="dot" cx="116" cy="164" r="2.2"/></svg><span class="seal-claim" data-en="No account. No cloud." data-es="Sin cuenta. Sin nube.">No account. No cloud.</span></div></li>
     </ol>
   </section>
 
@@ -667,7 +727,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   setTheme(savedTheme==='dark'?'dark':'warm');
   themeToggle.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'warm':'dark');});
 
-  // hero reel: real recordings, one after another; phone captures sit in a device frame
+  // hero reel: real recordings, one after another; phone captures sit in a device frame, desktop ones in a window
   var reel=document.getElementById('heroReel');
   var screen=document.getElementById('heroScreen');
   var backdrop=document.getElementById('screenBackdrop');
@@ -677,11 +737,14 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   var reelBar=document.getElementById('reelBar');
   var playButton=document.getElementById('reelPlay');
   var reelItems=[
-    {mode:'cinema',src:'assets/knowni-film.mp4',poster:'assets/knowni-film.webp',name:'Knowni',en:'REQUEST → CONSENT → ANSWER',es:'SOLICITUD → CONSENTIMIENTO → RESPUESTA'},
+    {mode:'cinema',src:'assets/audiorapy-film.mp4',poster:'assets/audiorapy-film.webp',name:'Audiorapy',en:'BOOK → SESSION → NOTE',es:'AGENDA → SESIÓN → NOTA'},
     {mode:'screen',src:'assets/choco-flow.mp4',poster:'assets/choco-flow-poster.webp',name:'Choco',en:'VOICE → SIGNATURE',es:'VOZ → FIRMA'},
-    {mode:'cinema',src:'assets/prufture-film.mp4',poster:'assets/prufture-film.webp',name:'Prufture',en:'CAPTURE → SIGN → SYNC',es:'CAPTURA → FIRMA → SINCRONÍA'},
+    {mode:'cinema',src:'assets/realrent4u-film.mp4',poster:'assets/realrent4u-film.webp',name:'realrent4u',en:'ADDRESS → RULE → SOURCE',es:'DIRECCIÓN → REGLA → FUENTE'},
     {mode:'screen',src:'assets/creva-card.mp4',poster:'assets/creva-card-poster.webp',name:'Creva',en:'SOURCE → SCORE',es:'FUENTE → SCORE'},
-    {mode:'screen',src:'assets/asegura-flow.mp4',poster:'assets/asegura-flow-poster.webp',name:'Asegura',en:'QUESTION → HANDOFF',es:'PREGUNTA → ESCALA'}
+    {mode:'cinema',src:'assets/knowni-film.mp4',poster:'assets/knowni-film.webp',name:'Knowni',en:'REQUEST → CONSENT → ANSWER',es:'SOLICITUD → CONSENTIMIENTO → RESPUESTA'},
+    {mode:'screen',src:'assets/asegura-flow.mp4',poster:'assets/asegura-flow-poster.webp',name:'Asegura',en:'QUESTION → HANDOFF',es:'PREGUNTA → ESCALA'},
+    {mode:'cinema',src:'assets/prufture-film.mp4',poster:'assets/prufture-film.webp',name:'Prufture',en:'CAPTURE → SIGN → SYNC',es:'CAPTURA → FIRMA → SINCRONÍA'},
+    {mode:'browser',src:'assets/blackbox-lab.mp4',poster:'assets/blackbox-lab.webp',name:'Blackbox Lab',en:'RECORD → REPLAY → DIFF',es:'GRABAR → REPETIR → COMPARAR'}
   ];
   var reelAt=0,reelVisible=!hasIO,userPaused=reduced,swapTimer=0;
   function labelReel(){
@@ -797,7 +860,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   // side dots and frame counter
   var dots=[].slice.call(document.querySelectorAll('[data-dot]'));
   var frame=document.getElementById('frameIndex');
-  var order={top:'000',prufture:'001',knowni:'002',choco:'003',creva:'004',asegura:'005',principles:'006',archive:'007',contact:'008',footer:'008'};
+  var order={top:'000',audiorapy:'001',realrent4u:'002',blackbox:'003',prufture:'004',knowni:'005',choco:'006',creva:'007',asegura:'008',principles:'009',archive:'010',contact:'011',footer:'011'};
   var sectionObserver=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(!entry.isIntersecting)return;
