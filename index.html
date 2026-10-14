@@ -12,7 +12,7 @@
 <meta name="description" content="AI agents, privacy and financial products for Latin America, built with explicit limits, human judgment and verifiable outcomes.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Luis Cárdenas — Systems that know when to stop">
-<meta property="og:description" content="Audiorapy, realrent4u, Blackbox Lab, Prufture, Knowni, Choco, Creva, Asegura and Ichu: products built around one hard limit each.">
+<meta property="og:description" content="Choco, Creva, Knowni, Prufture, Asegura, Ichu, Audiorapy, realrent4u and Blackbox Lab: products built around one hard limit each.">
 <meta property="og:url" content="https://luisalejandrocr.github.io/personal-web-page/">
 <meta property="og:image" content="https://luisalejandrocr.github.io/personal-web-page/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -438,15 +438,15 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
 
 <nav class="side-nav" aria-label="Sections">
   <a href="#top" class="active" data-dot="top"><span>Intro</span></a>
+  <a href="#choco" data-dot="choco"><span>Choco</span></a>
+  <a href="#creva" data-dot="creva"><span>Creva</span></a>
+  <a href="#knowni" data-dot="knowni"><span>Knowni</span></a>
+  <a href="#prufture" data-dot="prufture"><span>Prufture</span></a>
+  <a href="#asegura" data-dot="asegura"><span>Asegura</span></a>
+  <a href="#ichu" data-dot="ichu"><span>Ichu</span></a>
   <a href="#audiorapy" data-dot="audiorapy"><span>Audiorapy</span></a>
   <a href="#realrent4u" data-dot="realrent4u"><span>realrent4u</span></a>
   <a href="#blackbox" data-dot="blackbox"><span>Blackbox Lab</span></a>
-  <a href="#prufture" data-dot="prufture"><span>Prufture</span></a>
-  <a href="#knowni" data-dot="knowni"><span>Knowni</span></a>
-  <a href="#choco" data-dot="choco"><span>Choco</span></a>
-  <a href="#creva" data-dot="creva"><span>Creva</span></a>
-  <a href="#asegura" data-dot="asegura"><span>Asegura</span></a>
-  <a href="#ichu" data-dot="ichu"><span>Ichu</span></a>
   <a href="#principles" data-dot="principles"><span>Principles</span></a>
   <a href="#archive" data-dot="archive"><span>Archive</span></a>
   <a href="#contact" data-dot="contact"><span>Contact</span></a>
@@ -504,45 +504,46 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
     </div>
 
     <div class="reel">
-      <div class="film-track" id="audiorapy" data-section="audiorapy">
-        <article class="film film--cinema">
-          <video class="film-video" src="assets/audiorapy-film.mp4" poster="assets/audiorapy-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
-          <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>01</b><span data-en="SPEECH THERAPY · HOME VISITS" data-es="FONOAUDIOLOGÍA · A DOMICILIO">SPEECH THERAPY · HOME VISITS</span></span><span class="film-stamp" data-en="BOOK → SESSION → NOTE" data-es="AGENDA → SESIÓN → NOTA">BOOK → SESSION → NOTE</span></div>
-          <div class="film-copy">
-            <h3 data-en="The visit is shared. <em>The notes are not.</em>" data-es="La visita se comparte. <em>Las notas no.</em>">The visit is shared. <em>The notes are not.</em></h3>
-            <div class="film-limit mono" data-en="Clinical notes never reach the server" data-es="Las notas clínicas nunca llegan al servidor">Clinical notes never reach the server</div>
-            <p data-en="Audiorapy runs a home-visit speech therapist’s day: families book over WhatsApp with buttons, she logs each trial with its cue level, and an open model drafts the note — it stays a draft until she approves it. Notes are encrypted in her browser; the server sees times and statuses, nothing clinical." data-es="Audiorapy organiza el día de una fonoaudióloga a domicilio: las familias agendan por WhatsApp con botones, ella registra cada ensayo con su nivel de apoyo y un modelo abierto redacta la nota, que sigue siendo borrador hasta que ella la aprueba. Las notas se cifran en su navegador; el servidor ve horas y estados, nada clínico.">Audiorapy runs a home-visit speech therapist’s day: families book over WhatsApp with buttons, she logs each trial with its cue level, and an open model drafts the note — it stays a draft until she approves it. Notes are encrypted in her browser; the server sees times and statuses, nothing clinical.</p>
-            <div class="film-links"><a href="https://audiorapy.vercel.app" target="_blank" rel="noopener" data-en="Explore Audiorapy ↗" data-es="Explorar Audiorapy ↗">Explore Audiorapy ↗</a><a href="https://github.com/LuisAlejandroCR/audiorapy" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="film-track" id="realrent4u" data-section="realrent4u">
-        <article class="film film--cinema">
-          <video class="film-video" src="assets/realrent4u-film.mp4" poster="assets/realrent4u-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
-          <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>02</b><span data-en="RENTAL LAW · UNITED STATES" data-es="LEYES DE ARRIENDO · EE. UU.">RENTAL LAW · UNITED STATES</span></span><span class="film-stamp" data-en="ADDRESS → RULE → SOURCE" data-es="DIRECCIÓN → REGLA → FUENTE">ADDRESS → RULE → SOURCE</span></div>
-          <div class="film-copy">
-            <h3 data-en="Every answer quotes <em>its source.</em>" data-es="Cada respuesta cita <em>su fuente.</em>">Every answer quotes <em>its source.</em></h3>
-            <div class="film-limit mono" data-en="The model extracts. It never decides." data-es="El modelo extrae. Nunca decide.">The model extracts. It never decides.</div>
-            <p data-en="Type a U.S. address and a date. realrent4u places the building in its legal city — not its postal one — and answers with one of five labelled results, the exact quoted sentence and its source. When a fact is missing, the answer is unknown, never a guess." data-es="Escribe una dirección de EE. UU. y una fecha. realrent4u ubica el edificio en su ciudad legal —no en la postal— y responde con uno de cinco resultados etiquetados, la frase exacta citada y su fuente. Si falta un dato, la respuesta es desconocido, nunca una suposición.">Type a U.S. address and a date. realrent4u places the building in its legal city — not its postal one — and answers with one of five labelled results, the exact quoted sentence and its source. When a fact is missing, the answer is unknown, never a guess.</p>
-            <div class="film-links"><a href="https://realrent4u.vercel.app" target="_blank" rel="noopener" data-en="Explore realrent4u ↗" data-es="Explorar realrent4u ↗">Explore realrent4u ↗</a><a href="https://github.com/LuisAlejandroCR/realrent4u/blob/main/docs/METHOD.md" target="_blank" rel="noopener" data-en="Read the method ↗" data-es="Leer el método ↗">Read the method ↗</a></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="film-track" id="blackbox" data-section="blackbox">
+      <div class="film-track" id="choco" data-section="choco">
         <article class="film film--screen">
-          <div class="film-backdrop" style="background-image:url('assets/blackbox-lab.webp')" aria-hidden="true"></div>
-          <div class="film-device film-device--browser"><video src="assets/blackbox-lab.mp4" poster="assets/blackbox-lab.webp" muted loop playsinline preload="metadata" aria-label="Blackbox Lab console, recorded: a run of sequence c-1354 and the difference at step 34"></video></div>
+          <div class="film-backdrop" style="background-image:url('assets/choco-flow-poster.webp')" aria-hidden="true"></div>
+          <div class="film-device"><video src="assets/choco-flow.mp4" poster="assets/choco-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Choco transfer flow, recorded"></video></div>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>03</b><span data-en="LEGACY BANKING · PARITY" data-es="BANCA HEREDADA · PARIDAD">LEGACY BANKING · PARITY</span></span><span class="film-stamp" data-en="OBSERVE → COMPARE → UNDERSTAND" data-es="OBSERVAR → COMPARAR → ENTENDER">OBSERVE → COMPARE → UNDERSTAND</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>01</b><span>CELO · MINIPAY</span></span><span class="film-stamp" data-en="VOICE → INTENT → SIGNATURE" data-es="VOZ → INTENCIÓN → FIRMA">VOICE → INTENT → SIGNATURE</span></div>
           <div class="film-copy">
-            <h3 data-en="Replace the black box. <em>Errors included.</em>" data-es="Reemplaza la caja negra. <em>Errores incluidos.</em>">Replace the black box. <em>Errors included.</em></h3>
-            <div class="film-limit mono" data-en="No evidence, no rule" data-es="Sin evidencia, no hay regla">No evidence, no rule</div>
-            <p data-en="A ten-year-old banking service with no code and no docs had to be replaced by one that answers exactly the same. Blackbox Lab replays every recorded question against the replica and puts each difference next to the experiment that explains it." data-es="Un servicio bancario de diez años, sin código ni documentación, tenía que reemplazarse por uno que respondiera exactamente igual. Blackbox Lab repite cada pregunta grabada contra la réplica y pone cada diferencia junto al experimento que la explica.">A ten-year-old banking service with no code and no docs had to be replaced by one that answers exactly the same. Blackbox Lab replays every recorded question against the replica and puts each difference next to the experiment that explains it.</p>
-            <div class="film-links"><a href="https://blackboxlab.vercel.app" target="_blank" rel="noopener" data-en="Explore Blackbox Lab ↗" data-es="Explorar Blackbox Lab ↗">Explore Blackbox Lab ↗</a><a href="https://github.com/LuisAlejandroCR/agent-black" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
+            <h3 data-en="Money moves only when <em>you sign.</em>" data-es="El dinero se mueve solo cuando <em>tú firmas.</em>">Money moves only when <em>you sign.</em></h3>
+            <div class="film-limit mono" data-en="The agent never holds a key" data-es="El agente nunca custodia una llave">The agent never holds a key</div>
+            <p data-en="Choco turns a spoken or typed instruction into a family remittance on Celo — from USDC to Kenyan shillings, with an on-chain receipt." data-es="Choco convierte una instrucción hablada o escrita en una remesa familiar sobre Celo: de USDC a chelines kenianos, con recibo en cadena.">Choco turns a spoken or typed instruction into a family remittance on Celo — from USDC to Kenyan shillings, with an on-chain receipt.</p>
+            <div class="film-links"><a href="https://usechoco.app" target="_blank" rel="noopener" data-en="Explore Choco ↗" data-es="Explorar Choco ↗">Explore Choco ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="creva" data-section="creva">
+        <article class="film film--screen film--flip">
+          <div class="film-backdrop" style="background-image:url('assets/creva-card-poster.webp')" aria-hidden="true"></div>
+          <div class="film-device"><video src="assets/creva-card.mp4" poster="assets/creva-card-poster.webp" muted loop playsinline preload="metadata" aria-label="Creva financial platform, recorded"></video></div>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>02</b><span>FINTECH · MÉXICO</span></span><span class="film-stamp" data-en="SOURCE → SIGNAL → SCORE" data-es="FUENTE → SEÑAL → SCORE">SOURCE → SIGNAL → SCORE</span></div>
+          <div class="film-copy">
+            <h3 data-en="A score that shows its <em>work.</em>" data-es="Un score que muestra <em>cómo piensa.</em>">A score that shows its <em>work.</em></h3>
+            <div class="film-limit mono" data-en="Missing evidence stays missing" data-es="La evidencia que falta no se inventa">Missing evidence stays missing</div>
+            <p data-en="Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date." data-es="Creva ayuda a mujeres emprendedoras a convertir datos financieros dispersos en un score explicable. Cada señal apunta a su fuente y fecha.">Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date.</p>
+            <div class="film-links"><a href="https://creva-one.vercel.app" target="_blank" rel="noopener" data-en="Explore Creva ↗" data-es="Explorar Creva ↗">Explore Creva ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="knowni" data-section="knowni">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/knowni-film.mp4" poster="assets/knowni-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>03</b><span data-en="PRIVACY · STELLAR" data-es="PRIVACIDAD · STELLAR">PRIVACY · STELLAR</span></span><span class="film-stamp">REQUEST → CONSENT → ANSWER</span></div>
+          <div class="film-copy">
+            <h3 data-en="Prove you qualify. <em>Not who you are.</em>" data-es="Demuestra que calificas. <em>No quién eres.</em>">Prove you qualify. <em>Not who you are.</em></h3>
+            <div class="film-limit mono" data-en="Answers, never documents" data-es="Respuestas, nunca documentos">Answers, never documents</div>
+            <p data-en="To sign a contract you still hand over your whole file. Knowni gives the other party only the answer it needs — valid ID: yes. The journey ran on a real iPhone against Colombia’s registry, and a Soroban contract on Stellar testnet verified a real zero-knowledge proof." data-es="Para firmar un contrato todavía entregas tu expediente completo. Knowni le da a la contraparte solo la respuesta que necesita: documento vigente, sí. El recorrido corrió en un iPhone real contra la Registraduría, y un contrato Soroban en Stellar testnet verificó una prueba de conocimiento cero real.">To sign a contract you still hand over your whole file. Knowni gives the other party only the answer it needs — valid ID: yes. The journey ran on a real iPhone against Colombia’s registry, and a Soroban contract on Stellar testnet verified a real zero-knowledge proof.</p>
+            <div class="film-links"><a href="https://knowni.vercel.app/" target="_blank" rel="noopener" data-en="Explore Knowni ↗" data-es="Explorar Knowni ↗">Explore Knowni ↗</a><a href="https://github.com/LuisAlejandroCR/knowni" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
           </div>
         </article>
       </div>
@@ -561,56 +562,12 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
         </article>
       </div>
 
-      <div class="film-track" id="knowni" data-section="knowni">
-        <article class="film film--cinema">
-          <video class="film-video" src="assets/knowni-film.mp4" poster="assets/knowni-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
-          <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>05</b><span data-en="PRIVACY · STELLAR" data-es="PRIVACIDAD · STELLAR">PRIVACY · STELLAR</span></span><span class="film-stamp">REQUEST → CONSENT → ANSWER</span></div>
-          <div class="film-copy">
-            <h3 data-en="Prove you qualify. <em>Not who you are.</em>" data-es="Demuestra que calificas. <em>No quién eres.</em>">Prove you qualify. <em>Not who you are.</em></h3>
-            <div class="film-limit mono" data-en="Answers, never documents" data-es="Respuestas, nunca documentos">Answers, never documents</div>
-            <p data-en="To sign a contract you still hand over your whole file. Knowni gives the other party only the answer it needs — valid ID: yes. The journey ran on a real iPhone against Colombia’s registry, and a Soroban contract on Stellar testnet verified a real zero-knowledge proof." data-es="Para firmar un contrato todavía entregas tu expediente completo. Knowni le da a la contraparte solo la respuesta que necesita: documento vigente, sí. El recorrido corrió en un iPhone real contra la Registraduría, y un contrato Soroban en Stellar testnet verificó una prueba de conocimiento cero real.">To sign a contract you still hand over your whole file. Knowni gives the other party only the answer it needs — valid ID: yes. The journey ran on a real iPhone against Colombia’s registry, and a Soroban contract on Stellar testnet verified a real zero-knowledge proof.</p>
-            <div class="film-links"><a href="https://knowni.vercel.app/" target="_blank" rel="noopener" data-en="Explore Knowni ↗" data-es="Explorar Knowni ↗">Explore Knowni ↗</a><a href="https://github.com/LuisAlejandroCR/knowni" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="film-track" id="choco" data-section="choco">
-        <article class="film film--screen">
-          <div class="film-backdrop" style="background-image:url('assets/choco-flow-poster.webp')" aria-hidden="true"></div>
-          <div class="film-device"><video src="assets/choco-flow.mp4" poster="assets/choco-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Choco transfer flow, recorded"></video></div>
-          <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>06</b><span>CELO · MINIPAY</span></span><span class="film-stamp" data-en="VOICE → INTENT → SIGNATURE" data-es="VOZ → INTENCIÓN → FIRMA">VOICE → INTENT → SIGNATURE</span></div>
-          <div class="film-copy">
-            <h3 data-en="Money moves only when <em>you sign.</em>" data-es="El dinero se mueve solo cuando <em>tú firmas.</em>">Money moves only when <em>you sign.</em></h3>
-            <div class="film-limit mono" data-en="The agent never holds a key" data-es="El agente nunca custodia una llave">The agent never holds a key</div>
-            <p data-en="Choco turns a spoken or typed instruction into a family remittance on Celo — from USDC to Kenyan shillings, with an on-chain receipt." data-es="Choco convierte una instrucción hablada o escrita en una remesa familiar sobre Celo: de USDC a chelines kenianos, con recibo en cadena.">Choco turns a spoken or typed instruction into a family remittance on Celo — from USDC to Kenyan shillings, with an on-chain receipt.</p>
-            <div class="film-links"><a href="https://usechoco.app" target="_blank" rel="noopener" data-en="Explore Choco ↗" data-es="Explorar Choco ↗">Explore Choco ↗</a></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="film-track" id="creva" data-section="creva">
-        <article class="film film--screen film--flip">
-          <div class="film-backdrop" style="background-image:url('assets/creva-card-poster.webp')" aria-hidden="true"></div>
-          <div class="film-device"><video src="assets/creva-card.mp4" poster="assets/creva-card-poster.webp" muted loop playsinline preload="metadata" aria-label="Creva financial platform, recorded"></video></div>
-          <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>07</b><span>FINTECH · MÉXICO</span></span><span class="film-stamp" data-en="SOURCE → SIGNAL → SCORE" data-es="FUENTE → SEÑAL → SCORE">SOURCE → SIGNAL → SCORE</span></div>
-          <div class="film-copy">
-            <h3 data-en="A score that shows its <em>work.</em>" data-es="Un score que muestra <em>cómo piensa.</em>">A score that shows its <em>work.</em></h3>
-            <div class="film-limit mono" data-en="Missing evidence stays missing" data-es="La evidencia que falta no se inventa">Missing evidence stays missing</div>
-            <p data-en="Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date." data-es="Creva ayuda a mujeres emprendedoras a convertir datos financieros dispersos en un score explicable. Cada señal apunta a su fuente y fecha.">Creva helps women entrepreneurs turn scattered financial data into an explainable score. Every signal points to its source and date.</p>
-            <div class="film-links"><a href="https://creva-one.vercel.app" target="_blank" rel="noopener" data-en="Explore Creva ↗" data-es="Explorar Creva ↗">Explore Creva ↗</a></div>
-          </div>
-        </article>
-      </div>
-
       <div class="film-track" id="asegura" data-section="asegura">
         <article class="film film--screen">
           <div class="film-backdrop" style="background-image:url('assets/asegura-flow-poster.webp')" aria-hidden="true"></div>
           <div class="film-device"><video src="assets/asegura-flow.mp4" poster="assets/asegura-flow-poster.webp" muted loop playsinline preload="metadata" aria-label="Asegura conversational insurance flow, recorded"></video></div>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>08</b><span>INSURTECH · COLOMBIA</span></span><span class="film-stamp" data-en="QUESTION → REASON → HANDOFF" data-es="PREGUNTA → RAZÓN → ESCALA">QUESTION → REASON → HANDOFF</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>05</b><span>INSURTECH · COLOMBIA</span></span><span class="film-stamp" data-en="QUESTION → REASON → HANDOFF" data-es="PREGUNTA → RAZÓN → ESCALA">QUESTION → REASON → HANDOFF</span></div>
           <div class="film-copy">
             <h3 data-en="A conversation with an <em>exit.</em>" data-es="Una conversación con una <em>salida.</em>">A conversation with an <em>exit.</em></h3>
             <div class="film-limit mono" data-en="A human takes over at the edge" data-es="En el límite, entra un humano">A human takes over at the edge</div>
@@ -625,12 +582,55 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
           <div class="film-backdrop" style="background-image:url('assets/ichu-film-poster.webp')" aria-hidden="true"></div>
           <div class="film-device film-device--tall"><video src="assets/ichu-film.mp4" poster="assets/ichu-film-poster.webp" muted loop playsinline preload="metadata" aria-label="Ichu demo film, recorded"></video></div>
           <div class="film-shade" aria-hidden="true"></div>
-          <div class="film-top mono"><span class="film-badge"><b>09</b><span data-en="GAME · PERÚ · #HACKTHEANDES" data-es="JUEGO · PERÚ · #HACKTHEANDES">GAME · PERÚ · #HACKTHEANDES</span></span><span class="film-stamp" data-en="GO OUT → PHOTO → CARD" data-es="SALGO → FOTO → CARTA">GO OUT → PHOTO → CARD</span></div>
+          <div class="film-top mono"><span class="film-badge"><b>06</b><span data-en="GAME · PERÚ · #HACKTHEANDES" data-es="JUEGO · PERÚ · #HACKTHEANDES">GAME · PERÚ · #HACKTHEANDES</span></span><span class="film-stamp" data-en="GO OUT → PHOTO → CARD" data-es="SALGO → FOTO → CARTA">GO OUT → PHOTO → CARD</span></div>
           <div class="film-copy">
             <h3 data-en="A game you win <em>off the screen.</em>" data-es="Un juego que se gana <em>fuera de la pantalla.</em>">A game you win <em>off the screen.</em></h3>
             <div class="film-limit mono" data-en="The server keeps nothing — not even the photo" data-es="El servidor no guarda nada, ni la foto">The server keeps nothing — not even the photo</div>
             <p data-en="Ichu’s Andean animals only show up while your phone stays in your pocket. Back home, a photo challenge proves you were really outside: the AI checks it, then throws it away. Your collection lives only on your phone." data-es="Los animales andinos de Ichu solo aparecen mientras el celular está guardado. Al volver, un reto en foto demuestra que de verdad saliste: la IA la verifica y la descarta. Tu colección vive solo en tu celular.">Ichu’s Andean animals only show up while your phone stays in your pocket. Back home, a photo challenge proves you were really outside: the AI checks it, then throws it away. Your collection lives only on your phone.</p>
             <div class="film-links"><a href="https://ichu-app.vercel.app/" target="_blank" rel="noopener" data-en="Play Ichu ↗" data-es="Jugar Ichu ↗">Play Ichu ↗</a><a href="https://vt.tiktok.com/ZSgJNjfLV/" target="_blank" rel="noopener" data-en="Watch with sound ↗" data-es="Ver con sonido ↗">Watch with sound ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="audiorapy" data-section="audiorapy">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/audiorapy-film.mp4" poster="assets/audiorapy-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>07</b><span data-en="SPEECH THERAPY · HOME VISITS" data-es="FONOAUDIOLOGÍA · A DOMICILIO">SPEECH THERAPY · HOME VISITS</span></span><span class="film-stamp" data-en="BOOK → SESSION → NOTE" data-es="AGENDA → SESIÓN → NOTA">BOOK → SESSION → NOTE</span></div>
+          <div class="film-copy">
+            <h3 data-en="The visit is shared. <em>The notes are not.</em>" data-es="La visita se comparte. <em>Las notas no.</em>">The visit is shared. <em>The notes are not.</em></h3>
+            <div class="film-limit mono" data-en="Clinical notes never reach the server" data-es="Las notas clínicas nunca llegan al servidor">Clinical notes never reach the server</div>
+            <p data-en="Audiorapy runs a home-visit speech therapist’s day: families book over WhatsApp with buttons, she logs each trial with its cue level, and an open model drafts the note — it stays a draft until she approves it. Notes are encrypted in her browser; the server sees times and statuses, nothing clinical." data-es="Audiorapy organiza el día de una fonoaudióloga a domicilio: las familias agendan por WhatsApp con botones, ella registra cada ensayo con su nivel de apoyo y un modelo abierto redacta la nota, que sigue siendo borrador hasta que ella la aprueba. Las notas se cifran en su navegador; el servidor ve horas y estados, nada clínico.">Audiorapy runs a home-visit speech therapist’s day: families book over WhatsApp with buttons, she logs each trial with its cue level, and an open model drafts the note — it stays a draft until she approves it. Notes are encrypted in her browser; the server sees times and statuses, nothing clinical.</p>
+            <div class="film-links"><a href="https://audiorapy.vercel.app" target="_blank" rel="noopener" data-en="Explore Audiorapy ↗" data-es="Explorar Audiorapy ↗">Explore Audiorapy ↗</a><a href="https://github.com/LuisAlejandroCR/audiorapy" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="realrent4u" data-section="realrent4u">
+        <article class="film film--cinema">
+          <video class="film-video" src="assets/realrent4u-film.mp4" poster="assets/realrent4u-film.webp" muted playsinline preload="metadata" aria-hidden="true"></video>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>08</b><span data-en="RENTAL LAW · UNITED STATES" data-es="LEYES DE ARRIENDO · EE. UU.">RENTAL LAW · UNITED STATES</span></span><span class="film-stamp" data-en="ADDRESS → RULE → SOURCE" data-es="DIRECCIÓN → REGLA → FUENTE">ADDRESS → RULE → SOURCE</span></div>
+          <div class="film-copy">
+            <h3 data-en="Every answer quotes <em>its source.</em>" data-es="Cada respuesta cita <em>su fuente.</em>">Every answer quotes <em>its source.</em></h3>
+            <div class="film-limit mono" data-en="The model extracts. It never decides." data-es="El modelo extrae. Nunca decide.">The model extracts. It never decides.</div>
+            <p data-en="Type a U.S. address and a date. realrent4u places the building in its legal city — not its postal one — and answers with one of five labelled results, the exact quoted sentence and its source. When a fact is missing, the answer is unknown, never a guess." data-es="Escribe una dirección de EE. UU. y una fecha. realrent4u ubica el edificio en su ciudad legal —no en la postal— y responde con uno de cinco resultados etiquetados, la frase exacta citada y su fuente. Si falta un dato, la respuesta es desconocido, nunca una suposición.">Type a U.S. address and a date. realrent4u places the building in its legal city — not its postal one — and answers with one of five labelled results, the exact quoted sentence and its source. When a fact is missing, the answer is unknown, never a guess.</p>
+            <div class="film-links"><a href="https://realrent4u.vercel.app" target="_blank" rel="noopener" data-en="Explore realrent4u ↗" data-es="Explorar realrent4u ↗">Explore realrent4u ↗</a><a href="https://github.com/LuisAlejandroCR/realrent4u/blob/main/docs/METHOD.md" target="_blank" rel="noopener" data-en="Read the method ↗" data-es="Leer el método ↗">Read the method ↗</a></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="film-track" id="blackbox" data-section="blackbox">
+        <article class="film film--screen">
+          <div class="film-backdrop" style="background-image:url('assets/blackbox-lab.webp')" aria-hidden="true"></div>
+          <div class="film-device film-device--browser"><video src="assets/blackbox-lab.mp4" poster="assets/blackbox-lab.webp" muted loop playsinline preload="metadata" aria-label="Blackbox Lab console, recorded: a run of sequence c-1354 and the difference at step 34"></video></div>
+          <div class="film-shade" aria-hidden="true"></div>
+          <div class="film-top mono"><span class="film-badge"><b>09</b><span data-en="LEGACY BANKING · PARITY" data-es="BANCA HEREDADA · PARIDAD">LEGACY BANKING · PARITY</span></span><span class="film-stamp" data-en="OBSERVE → COMPARE → UNDERSTAND" data-es="OBSERVAR → COMPARAR → ENTENDER">OBSERVE → COMPARE → UNDERSTAND</span></div>
+          <div class="film-copy">
+            <h3 data-en="Replace the black box. <em>Errors included.</em>" data-es="Reemplaza la caja negra. <em>Errores incluidos.</em>">Replace the black box. <em>Errors included.</em></h3>
+            <div class="film-limit mono" data-en="No evidence, no rule" data-es="Sin evidencia, no hay regla">No evidence, no rule</div>
+            <p data-en="A ten-year-old banking service with no code and no docs had to be replaced by one that answers exactly the same. Blackbox Lab replays every recorded question against the replica and puts each difference next to the experiment that explains it." data-es="Un servicio bancario de diez años, sin código ni documentación, tenía que reemplazarse por uno que respondiera exactamente igual. Blackbox Lab repite cada pregunta grabada contra la réplica y pone cada diferencia junto al experimento que la explica.">A ten-year-old banking service with no code and no docs had to be replaced by one that answers exactly the same. Blackbox Lab replays every recorded question against the replica and puts each difference next to the experiment that explains it.</p>
+            <div class="film-links"><a href="https://blackboxlab.vercel.app" target="_blank" rel="noopener" data-en="Explore Blackbox Lab ↗" data-es="Explorar Blackbox Lab ↗">Explore Blackbox Lab ↗</a><a href="https://github.com/LuisAlejandroCR/agent-black" target="_blank" rel="noopener" data-en="Read the evidence ↗" data-es="Leer la evidencia ↗">Read the evidence ↗</a></div>
           </div>
         </article>
       </div>
@@ -877,7 +877,7 @@ a.seal-item .seal-claim::after{content:" ↗";color:var(--green)}
   // side dots and frame counter
   var dots=[].slice.call(document.querySelectorAll('[data-dot]'));
   var frame=document.getElementById('frameIndex');
-  var order={top:'000',audiorapy:'001',realrent4u:'002',blackbox:'003',prufture:'004',knowni:'005',choco:'006',creva:'007',asegura:'008',ichu:'009',principles:'010',archive:'011',contact:'012',footer:'012'};
+  var order={top:'000',choco:'001',creva:'002',knowni:'003',prufture:'004',asegura:'005',ichu:'006',audiorapy:'007',realrent4u:'008',blackbox:'009',principles:'010',archive:'011',contact:'012',footer:'012'};
   var sectionObserver=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(!entry.isIntersecting)return;
